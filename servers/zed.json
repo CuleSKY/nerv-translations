@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 困难 #{编号}",
+      "names": {
+        "en": "ZombiEden CS2 KZ Hard #{编号}"
+      }
+    }
+  ]
+}

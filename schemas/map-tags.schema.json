@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "maps/tags.json",
+  "description": "The ZE tag dictionary in the translation repository CuleSKY/nerv-translations: the tags EXG uses, the words of EXG that mean each, and their names and aliases by language. The site takes a merged version only when every file passes this schema and the checks it cannot express: an ID or EXG word given twice, blank names.",
+  "$ref": "#/$defs/TagsFile",
+  "$defs": {
+    "TagEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "aliases": {
+          "additionalProperties": false,
+          "description": "Other names players may type for the tag, by language: en, zh-CN, ja, ko. A name or alias in any language finds the tag; one that several tags share finds them all",
+          "minProperties": 1,
+          "properties": {
+            "en": {
+              "items": {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "type": "array"
+            },
+            "ja": {
+              "items": {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "type": "array"
+            },
+            "ko": {
+              "items": {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "type": "array"
+            },
+            "zh-CN": {
+              "items": {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "exg": {
+          "description": "The words of EXG's ZeTagStr that mean this tag; a word means one tag",
+          "items": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[^，\\x00-\\x1f]+$",
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
+        },
+        "id": {
+          "description": "The tag's ID, which pages filter by and administrators set; keep it for good",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,31}$",
+          "type": "string"
+        },
+        "names": {
+          "additionalProperties": false,
+          "description": "The tag's name by language: en, zh-CN, ja, ko. A language left out shows the English name, else the Simplified Chinese one, else the first EXG word; zh-Hant is converted from zh-CN",
+          "minProperties": 1,
+          "properties": {
+            "en": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ja": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ko": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "zh-CN": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "exg",
+        "names"
+      ],
+      "type": "object"
+    },
+    "TagsFile": {
+      "additionalProperties": false,
+      "properties": {
+        "tags": {
+          "description": "The ZE tags, in the order maps show them",
+          "items": {
+            "$ref": "#/$defs/TagEntry"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "tags"
+      ],
+      "type": "object"
+    }
+  }
+}

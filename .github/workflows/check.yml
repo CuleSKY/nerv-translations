@@ -39,14 +39,27 @@ jobs:
               status=1
             fi
           done < <(find servers \( -type f -o -type l \) -name '*.json' -print0 2>/dev/null)
+          # maps/ holds only the tag dictionary and one map-name file per
+          # game, named by the game's Steam AppID (a 32-bit number).
+          while IFS= read -r -d '' file; do
+            if [[ -L $file ]]; then
+              echo "::error file=$file::a map file must be a regular file, not a link"
+              status=1
+            elif [[ $file == maps/tags.json ]]; then
+              continue
+            elif [[ ! $file =~ ^maps/names/([1-9][0-9]{0,9})\.json$ ]] || (( BASH_REMATCH[1] > 4294967295 )); then
+              echo "::error file=$file::maps/ holds only maps/tags.json and maps/names/<game>.json, <game> being the game's Steam AppID in digits, such as 730 for CS2, directly under maps/names/"
+              status=1
+            fi
+          done < <(find maps \( -type f -o -type l \) -print0 2>/dev/null)
           exit $status
       # The site reads the files as strict JSON: UTF-8 without a byte order
-      # mark, no key repeated in an object. The schema check below reads
+      # mark, no key repeated in an object. The schema checks below read
       # them more leniently, so this is checked first.
       - name: Check the JSON
         shell: bash
         run: |
-          mapfile -d '' files < <(find servers -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          mapfile -d '' files < <(find servers maps/names maps/tags.json -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
           if (( ${#files[@]} == 0 )); then
             exit 0
           fi
@@ -84,3 +97,19 @@ jobs:
             exit 0
           fi
           check-jsonschema --schemafile schemas/servers.schema.json "${files[@]}"
+      - name: Check the map files
+        shell: bash
+        run: |
+          status=0
+          mapfile -d '' files < <(find maps/names -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          if (( ${#files[@]} == 0 )); then
+            echo "No map-name file."
+          else
+            check-jsonschema --schemafile schemas/map-names.schema.json "${files[@]}" || status=1
+          fi
+          if [[ -f maps/tags.json && ! -L maps/tags.json ]]; then
+            check-jsonschema --schemafile schemas/map-tags.schema.json maps/tags.json || status=1
+          else
+            echo "No tag dictionary."
+          fi
+          exit $status

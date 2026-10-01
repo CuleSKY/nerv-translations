@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "maps/names/<game>.json",
+  "description": "The reviewed names of the maps of one game, <game> being its Steam AppID (730 for CS2), in the translation repository CuleSKY/nerv-translations. English names drop the mode prefix, the underscores and the authors' marks, and write the version plainly, e.g. ze_frozen_abyss_v1_2: Frozen Abyss (v1.2). The site takes a merged version only when every file passes this schema and the checks it cannot express: a map named twice (case ignored), blank names, entries that say nothing.",
+  "$ref": "#/$defs/MapNamesFile",
+  "$defs": {
+    "MapNameEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "The raw map name, as servers report it; case is ignored, so a file names a map once",
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "type": "string"
+        },
+        "names": {
+          "additionalProperties": false,
+          "description": "The reviewed names by language: en, zh-CN, ja, ko. They come before the community's Chinese name. A language left out shows, in zh-CN, the community's Chinese name, else the English name, else the raw name; zh-Hant is converted from zh-CN",
+          "minProperties": 1,
+          "properties": {
+            "en": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ja": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ko": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "zh-CN": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "no_community_name": {
+          "description": "true: do not show the Chinese name the community gives (EXG's for CS2, UB's for CSGO ZE maps)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "MapNamesFile": {
+      "additionalProperties": false,
+      "properties": {
+        "maps": {
+          "description": "One entry per map of the game",
+          "items": {
+            "$ref": "#/$defs/MapNameEntry"
+          },
+          "maxItems": 20000,
+          "type": "array"
+        }
+      },
+      "required": [
+        "maps"
+      ],
+      "type": "object"
+    }
+  }
+}

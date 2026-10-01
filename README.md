@@ -59,8 +59,8 @@ NERV 网站的翻译仓库。任何人都可以提 PR，也可以用 AI 起草�
 - `names` 按语言写：`en`、`zh-CN`、`ja`、`ko`，至少写一种。繁体中文由简体转换，不单独写。
 - 英语名去掉玩法前缀、下划线与作者、移植者这类标记，保留版本号与梗，版本写成一眼看得懂的样子，例如 `ze_frozen_abyss_v1_2` 写作"Frozen Abyss (v1.2)"。
 - 这里的译名优先于社区给的中文名（CS2 的图用 EXG 的，CSGO 的 ZE 图用 UB 的），社区之后的更新不覆盖它。
-- 没写的语言显示英语名，没有英语名就显示原始地图名；简体中文没写时先显示社区给的中文名。`"no_community_name": true` 表示这张图不用社区给的中文名，上面的例子里 `ze_atix_panic_2017_p` 在简体中文界面显示英语名。
-- 每一条至少写 `names` 或 `no_community_name` 之一。从文件里删掉一条，这张图按上一条回退。
+- 没写的语言显示原始地图名，不拿英语或其他语言代替；简体中文没写时先显示社区给的中文名。`"no_community_name": true` 表示这张图不用社区给的中文名，上面的例子里 `ze_atix_panic_2017_p` 在简体中文界面显示原始地图名。
+- 每一条至少写 `names` 或 `no_community_name` 之一。从文件里删掉一条，简体中文回到社区给的中文名，其余语言显示原始地图名。
 
 ## ZE 标签词典
 
@@ -70,10 +70,9 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
 {
   "tags": [
     {
-      "id": "knife",
+      "id": "laser",
       "exg": ["跳刀"],
-      "names": {"zh-CN": "跳刀", "en": "Knife"},
-      "aliases": {"en": ["Knifing"]}
+      "names": {"zh-CN": "跳刀"}
     }
   ]
 }
@@ -81,7 +80,7 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
 
 - `id` 是标签的标识，页面按它筛选，管理员按它给地图设标签，定下后不再改：小写字母、数字与连字符，以字母或数字开头，最长 32 个字符。
 - `exg` 是 EXG 表示这个标签的词，至少一个；一个词只属于一个标签。EXG 给了词典里没有的词时，这张图的标签保持原样，词典补上后下一次更新换成通用标签。
-- `names` 按语言写标签的名称：`en`、`zh-CN`、`ja`、`ko`，至少写一种。没写的语言显示英语名，没有英语名显示简体中文名，再没有就显示第一个 EXG 词；繁体中文由简体转换。
+- `names` 按语言写标签的名称：`en`、`zh-CN`、`ja`、`ko`，至少写一种。没写的语言显示第一个 EXG 词，不拿其他语言的名称代替；繁体中文由简体转换。
 - `aliases` 按语言写玩家可能输入的其他叫法，可以省略。玩家输入任一语言的名称或别名都能找到这个标签；几个标签共用的叫法让玩家从中选。
 - 地图上的标签按文件里的顺序显示。
 
@@ -123,8 +122,8 @@ A map-name file gives a map, by the raw name servers report, a name in English, 
 - `names` gives the names by language, `en`, `zh-CN`, `ja` and `ko`, at least one. Traditional Chinese is converted from Simplified Chinese.
 - An English name drops the mode prefix, the underscores and marks such as the author's or porter's, keeps the version and any joke, and writes the version plainly: `ze_frozen_abyss_v1_2` is "Frozen Abyss (v1.2)".
 - These names come before the Chinese names the communities give (EXG's for CS2 maps, UB's for CSGO ZE maps), and the communities' later updates do not replace them.
-- A language left out shows the English name, else the raw map name; Simplified Chinese first shows the community's Chinese name. `"no_community_name": true` means the map does not use the community's Chinese name: in the example, `ze_atix_panic_2017_p` shows its English name on the Simplified Chinese pages.
-- Each entry gives `names`, `no_community_name` or both. Removing an entry lets the map fall back as above.
+- A language left out shows the raw map name; no other language, English included, stands in. Simplified Chinese first shows the community's Chinese name. `"no_community_name": true` means the map does not use the community's Chinese name: in the example, `ze_atix_panic_2017_p` shows its raw name on the Simplified Chinese pages.
+- Each entry gives `names`, `no_community_name` or both. Removing an entry brings back the community's Chinese name in Simplified Chinese and the raw map name in the other languages.
 
 ### ZE tag dictionary
 
@@ -132,7 +131,7 @@ The tags of ZE maps come from EXG. The dictionary turns EXG's tag words into com
 
 - `id` identifies the tag; pages filter by it and administrators set a map's tags by it, so it stays once chosen. It is lower-case letters, digits and hyphens, starting with a letter or digit, at most 32 characters.
 - `exg` lists EXG's words for the tag, at least one; a word belongs to one tag. When EXG gives a word the dictionary lacks, the map keeps its tags; once the word is added, the next update gives the common tag.
-- `names` gives the tag's name by language, `en`, `zh-CN`, `ja` and `ko`, at least one. A language left out shows the English name, else the Simplified Chinese one, else the first EXG word; Traditional Chinese is converted from Simplified Chinese.
+- `names` gives the tag's name by language, `en`, `zh-CN`, `ja` and `ko`, at least one. A language left out shows the first EXG word; no other language stands in. Traditional Chinese is converted from Simplified Chinese.
 - `aliases` gives other names players may type, by language, and may be left out. A name or alias in any language finds the tag; one that several tags share lets the player choose among them.
 - A map shows its tags in the order of the file.
 

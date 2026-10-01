@@ -4,11 +4,11 @@
     {"id": "luffaren", "exg": ["卤粉"], "names": {"zh-CN": "卤粉"}},
     {"id": "obj", "exg": ["OBJ"], "names": {"zh-CN": "OBJ"}},
     {"id": "casual", "exg": ["休闲"], "names": {"zh-CN": "休闲"}},
-    {"id": "progression", "exg": ["闯关"], "names": {"zh-CN": "闯关", "en": "Progression"}},
-    {"id": "laser", "exg": ["跳刀"], "names": {"zh-CN": "跳刀", "en": "Knife"}},
+    {"id": "progression", "exg": ["闯关"], "names": {"zh-CN": "闯关"}},
+    {"id": "laser", "exg": ["跳刀"], "names": {"zh-CN": "跳刀"}},
     {"id": "event", "exg": ["活动"], "names": {"zh-CN": "活动"}},
     {"id": "classic", "exg": ["经典"], "names": {"zh-CN": "经典"}},
-    {"id": "danmu", "exg": ["弹幕"], "names": {"zh-CN": "弹幕", "en": "Bullet Hell"}},
+    {"id": "danmu", "exg": ["弹幕"], "names": {"zh-CN": "弹幕"}},
     {"id": "voxel", "exg": ["方块"], "names": {"zh-CN": "方块"}},
     {"id": "marathon", "exg": ["长征"], "names": {"zh-CN": "长征"}}
   ]

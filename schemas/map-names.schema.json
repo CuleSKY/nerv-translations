@@ -16,7 +16,7 @@
         },
         "names": {
           "additionalProperties": false,
-          "description": "The reviewed names by language: en, zh-CN, ja, ko. They come before the community's Chinese name. A language left out shows, in zh-CN, the community's Chinese name, else the English name, else the raw name; zh-Hant is converted from zh-CN",
+          "description": "The reviewed names by language: en, zh-CN, ja, ko. They come before the community's Chinese name. A language left out shows, in zh-CN, the community's Chinese name, else the raw name; in the others the raw name, never another language's name; zh-Hant is converted from zh-CN",
           "minProperties": 1,
           "properties": {
             "en": {

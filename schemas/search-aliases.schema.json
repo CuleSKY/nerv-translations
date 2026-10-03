@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "search/aliases/<game>.json",
+  "description": "The formal relations of what players call the maps of one game, <game> being its Steam AppID (730 for CS2), in the translation repository CuleSKY/nerv-translations: an alias is strong to the maps it means, weak to those it may mean, and unrelated to those it does not, which players' searches can then no longer relate to it. Deleting an entry, or a map from it, revokes the relation. The site takes a merged version only when every file passes this schema and the checks it cannot express: an alias given twice or without a letter or digit, a map given twice for one alias, entries that relate no map.",
+  "$ref": "#/$defs/AliasesFile",
+  "$defs": {
+    "AliasEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "description": "What players type, Chinese in Simplified Chinese (pages convert Traditional input). Aliases are compared as search compares words: case and width do not matter, and spaces and punctuation only separate words, so 宫殿62 and 宫殿 62 are one alias",
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "strong": {
+          "description": "Raw names of the maps the alias means, case ignored; they rank right after the maps whose name is the search word",
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "type": "string"
+          },
+          "maxItems": 200,
+          "minItems": 1,
+          "type": "array"
+        },
+        "unrelated": {
+          "description": "Raw names of the maps the alias does not mean, case ignored; players' searches can no longer relate them",
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "type": "string"
+          },
+          "maxItems": 200,
+          "minItems": 1,
+          "type": "array"
+        },
+        "weak": {
+          "description": "Raw names of the maps the alias may mean, case ignored; they rank after the strong ones",
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "type": "string"
+          },
+          "maxItems": 200,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "alias"
+      ],
+      "type": "object"
+    },
+    "AliasesFile": {
+      "additionalProperties": false,
+      "properties": {
+        "aliases": {
+          "description": "What players call the maps of the game, one entry per alias",
+          "items": {
+            "$ref": "#/$defs/AliasEntry"
+          },
+          "maxItems": 20000,
+          "type": "array"
+        }
+      },
+      "required": [
+        "aliases"
+      ],
+      "type": "object"
+    }
+  }
+}

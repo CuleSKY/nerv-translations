@@ -52,6 +52,17 @@ jobs:
               status=1
             fi
           done < <(find maps \( -type f -o -type l \) -print0 2>/dev/null)
+          # search/ holds only one alias file per game, named by the game's
+          # Steam AppID like the map-name files.
+          while IFS= read -r -d '' file; do
+            if [[ -L $file ]]; then
+              echo "::error file=$file::a search file must be a regular file, not a link"
+              status=1
+            elif [[ ! $file =~ ^search/aliases/([1-9][0-9]{0,9})\.json$ ]] || (( BASH_REMATCH[1] > 4294967295 )); then
+              echo "::error file=$file::search/ holds only search/aliases/<game>.json, <game> being the game's Steam AppID in digits, such as 730 for CS2, directly under search/aliases/"
+              status=1
+            fi
+          done < <(find search \( -type f -o -type l \) -print0 2>/dev/null)
           exit $status
       # The site reads the files as strict JSON: UTF-8 without a byte order
       # mark, no key repeated in an object. The schema checks below read
@@ -59,7 +70,7 @@ jobs:
       - name: Check the JSON
         shell: bash
         run: |
-          mapfile -d '' files < <(find servers maps/names maps/tags.json -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          mapfile -d '' files < <(find servers maps/names maps/tags.json search/aliases -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
           if (( ${#files[@]} == 0 )); then
             exit 0
           fi
@@ -113,3 +124,12 @@ jobs:
             echo "No tag dictionary."
           fi
           exit $status
+      - name: Check the search aliases
+        shell: bash
+        run: |
+          mapfile -d '' files < <(find search/aliases -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          if (( ${#files[@]} == 0 )); then
+            echo "No alias file."
+            exit 0
+          fi
+          check-jsonschema --schemafile schemas/search-aliases.schema.json "${files[@]}"

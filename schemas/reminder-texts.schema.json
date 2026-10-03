@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reminders/<language>.json, <language> zh-CN, ja or ko",
+  "description": "The texts of map reminders in one language, <language> being zh-CN, ja or ko (zh-Hant is converted from zh-CN), in the translation repository CuleSKY/nerv-translations; English's file, reminders/en.json, has its own schema. Each text is one line in which {variable} stands for a value the reminder fills in, each text with its own variables: it uses every one of them and no other; {{ and }} are literal braces. NERV's backend takes these files when it is released, checking them again. A text left out shows in English.",
+  "$ref": "#/$defs/ReminderTextsFile",
+  "$defs": {
+    "ReminderTextsFile": {
+      "additionalProperties": false,
+      "properties": {
+        "map": {
+          "allOf": [
+            {
+              "description": "Uses no variable but {map}; every other brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {map}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map)\\})*\\{map\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map)\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The map's line when the language has no name for it; {map}: the raw map name",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "map_with_name": {
+          "allOf": [
+            {
+              "description": "Uses no variable but {map}, {name}; every other brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map|name)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {map}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map|name)\\})*\\{map\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map|name)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {name}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map|name)\\})*\\{name\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:map|name)\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The map's line with its name in the language; {map}: the raw map name, {name}: its name",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "players": {
+          "allOf": [
+            {
+              "description": "Uses no variable but {players}, {capacity}; every other brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players|capacity)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {players}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players|capacity)\\})*\\{players\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players|capacity)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {capacity}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players|capacity)\\})*\\{capacity\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players|capacity)\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The line of the server's current players; {players}: the players, {capacity}: the server's capacity",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "players_without_capacity": {
+          "allOf": [
+            {
+              "description": "Uses no variable but {players}; every other brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {players}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players)\\})*\\{players\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:players)\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The same line for a server whose capacity its source does not tell; {players}: the players",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "server": {
+          "allOf": [
+            {
+              "description": "Uses no variable but {server}; every other brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:server)\\})*$",
+              "type": "string"
+            },
+            {
+              "description": "Uses {server}",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\}|\\{(?:server)\\})*\\{server\\}(?:[^{}]|\\{\\{|\\}\\}|\\{(?:server)\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The server's line; {server}: its name, with the community's short name before it unless it begins with the community's name",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": {
+          "allOf": [
+            {
+              "description": "Uses no variable; every brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "The reminder's title, e.g. 换图通知",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

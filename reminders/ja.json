@@ -1,0 +1,8 @@
+{
+  "title": "マップ変更のお知らせ",
+  "map": "マップ：{map}",
+  "map_with_name": "マップ：{map}（{name}）",
+  "server": "サーバー：{server}",
+  "players": "現在の人数：{players} / {capacity}",
+  "players_without_capacity": "現在の人数：{players}"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "맵 변경 알림",
+  "map": "맵: {map}",
+  "map_with_name": "맵: {map} ({name})",
+  "server": "서버: {server}",
+  "players": "현재 인원: {players} / {capacity}",
+  "players_without_capacity": "현재 인원: {players}"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Map changed",
+  "map": "Map: {map}",
+  "map_with_name": "Map: {map} ({name})",
+  "server": "Server: {server}",
+  "players": "Current players: {players} / {capacity}",
+  "players_without_capacity": "Current players: {players}"
+}

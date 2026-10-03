@@ -8,7 +8,7 @@
       "additionalProperties": false,
       "properties": {
         "alias": {
-          "description": "What players type, Chinese in Simplified Chinese (pages convert Traditional input). Aliases are compared as search compares words: case and width do not matter, and spaces and punctuation only separate words, so 宫殿62 and 宫殿 62 are one alias",
+          "description": "What players type, written as they write it, in Simplified or Traditional Chinese alike. Aliases are compared as search compares words: case, width and Simplified or Traditional characters do not matter, and spaces and punctuation only separate words, so 宫殿62, 宫殿 62 and 宮殿62 are one alias",
           "maxLength": 64,
           "minLength": 1,
           "type": "string"

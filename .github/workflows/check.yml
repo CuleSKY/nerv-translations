@@ -1,7 +1,9 @@
 # Checks the names and the format of the translation files on every pull
 # request and every push to main, against the JSON Schemas in schemas/,
 # which NERV generates. After a merge the site checks the whole repository
-# again and takes the merge only when every file passes.
+# again and takes the merge only when every file passes. The reminder texts
+# are not taken at a merge: NERV's backend takes them, and checks them
+# again, when it is released.
 name: check
 
 on:
@@ -63,6 +65,22 @@ jobs:
               status=1
             fi
           done < <(find search \( -type f -o -type l \) -print0 2>/dev/null)
+          # reminders/ holds only the reminder texts of each language.
+          # English is required: a text another language leaves out shows
+          # in English.
+          while IFS= read -r -d '' file; do
+            if [[ -L $file ]]; then
+              echo "::error file=$file::a reminder file must be a regular file, not a link"
+              status=1
+            elif [[ ! $file =~ ^reminders/(en|zh-CN|ja|ko)\.json$ ]]; then
+              echo "::error file=$file::reminders/ holds only reminders/<language>.json, <language> being en, zh-CN, ja or ko (Traditional Chinese is converted from zh-CN), directly under reminders/"
+              status=1
+            fi
+          done < <(find reminders \( -type f -o -type l \) -print0 2>/dev/null)
+          if [[ ! -f reminders/en.json ]]; then
+            echo "::error file=reminders/en.json::reminders/en.json is required: English has every reminder text"
+            status=1
+          fi
           exit $status
       # The site reads the files as strict JSON: UTF-8 without a byte order
       # mark, no key repeated in an object. The schema checks below read
@@ -70,7 +88,7 @@ jobs:
       - name: Check the JSON
         shell: bash
         run: |
-          mapfile -d '' files < <(find servers maps/names maps/tags.json search/aliases -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          mapfile -d '' files < <(find servers maps/names maps/tags.json search/aliases reminders -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
           if (( ${#files[@]} == 0 )); then
             exit 0
           fi
@@ -133,3 +151,16 @@ jobs:
             exit 0
           fi
           check-jsonschema --schemafile schemas/search-aliases.schema.json "${files[@]}"
+      # English has every text and each other language may leave texts out;
+      # both schemas check that a text uses each of its variables and no
+      # other. The backend's release checks the files again.
+      - name: Check the reminder texts
+        shell: bash
+        run: |
+          status=0
+          check-jsonschema --schemafile schemas/reminder-texts-en.schema.json reminders/en.json || status=1
+          mapfile -d '' files < <(find reminders -maxdepth 1 -type f -name '*.json' ! -name en.json -print0 2>/dev/null | sort -z)
+          if (( ${#files[@]} > 0 )); then
+            check-jsonschema --schemafile schemas/reminder-texts.schema.json "${files[@]}" || status=1
+          fi
+          exit $status

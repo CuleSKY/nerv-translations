@@ -95,15 +95,15 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
   "aliases": [
     {"alias": "宫殿62", "strong": ["ze_ffxiv_wanderers_palace_v6_2"]},
     {"alias": "宫殿", "weak": ["ze_ffxiv_wanderers_palace", "ze_ffxiv_wanderers_palace_v2_8", "ze_ffxiv_wanderers_palace_v5_2", "ze_ffxiv_wanderers_palace_v6_2"]},
-    {"alias": "麻辣狗", "strong": ["ze_ffvii_malgo_reactor"], "unrelated": ["ze_ffxii_mt_bur_omisace_v6"]}
+    {"alias": "米纳斯", "weak": ["ze_lotr_minas_tirith", "ze_lotr_minas_tirith_p"], "unrelated": ["ze_lotr_minas_tirith_cs2"]}
   ]
 }
 ```
 
-- `alias` 是玩家输入的叫法。比较叫法时简繁不分，也不分大小写和全角半角，空格与标点只用来分词："宫殿62"、"宮殿62"与"宫殿 62"是同一个叫法，一个文件里只写一次。叫法里至少要有一个字母、数字或汉字。
+- `alias` 是玩家输入的叫法，照玩家的写法写，简体、繁体都可以。比较叫法时简繁不分，也不分大小写和全角半角，空格与标点只用来分词："宫殿62"、"宮殿62"与"宫殿 62"是同一个叫法，一个文件里只写一次。叫法里至少要有一个字母、数字或汉字。
 - `strong`：强相关，这个叫法就是指这张图，搜这个词时排在名字正好是这个词的图之后、一般文字匹配之前。
 - `weak`：弱相关，可能指这张图，排在强相关之后。
-- `unrelated`：无关，这个叫法不指这张图；玩家的搜索也不能再把它们学成相关。
+- `unrelated`：无关，这个叫法不指这张图；玩家的搜索也不能再把它们学成相关。上面的例子里，搜"米纳斯"不出现 ze_lotr_minas_tirith_cs2。
 - 地图写服务器报的原始地图名，不分大小写，不必已在网站的地图目录里。一个叫法可以指多张图；同一张图在一条里只写一次，不管写在哪一类；每条至少写 `strong`、`weak`、`unrelated` 之一。
 - 关系按游戏分文件，同一个叫法在 CS2 和 CSS 里互不影响。
 - 维护者写的关系覆盖从玩家搜索里学到的关系。删掉一条，或从一条里删掉一张图，就撤销了这条关系。
@@ -193,10 +193,10 @@ The tags of ZE maps come from EXG. The dictionary turns EXG's tag words into com
 
 Players often look for a map by a nickname: "宫殿62" means ze_ffxiv_wanderers_palace_v6_2, though neither its name nor its translations contain the word. A formal relation says what maps an alias means, as in CS2's `search/aliases/730.json`; see the example above.
 
-- `alias` is what players type. Aliases are compared without regard to Simplified or Traditional Chinese, case, or full and half width, and spaces and punctuation only separate words: "宫殿62", "宮殿62" and "宫殿 62" are one alias, given once in a file. An alias has at least one letter, digit or Chinese character.
+- `alias` is what players type, written as they write it, in Simplified or Traditional Chinese alike. Aliases are compared without regard to Simplified or Traditional Chinese, case, or full and half width, and spaces and punctuation only separate words: "宫殿62", "宮殿62" and "宫殿 62" are one alias, given once in a file. An alias has at least one letter, digit or Chinese character.
 - `strong`: the alias means the map. Searching for it ranks the map right after the maps whose name is the word, before ordinary text matches.
 - `weak`: the alias may mean the map; it ranks after the strong ones.
-- `unrelated`: the alias does not mean the map, and players' searches can no longer relate them.
+- `unrelated`: the alias does not mean the map, and players' searches can no longer relate them. In the example, a search for "米纳斯" does not show ze_lotr_minas_tirith_cs2.
 - Maps are given by the raw names servers report, case ignored; the website's catalog need not have them yet. An alias may mean several maps; an entry gives a map once, whatever its kind, and gives at least one of `strong`, `weak` and `unrelated`.
 - Each game has its own file: an alias in CS2 and the same alias in CSS do not affect each other.
 - The maintainers' relations override those learnt from players' searches. Deleting an entry, or a map from it, revokes the relation.

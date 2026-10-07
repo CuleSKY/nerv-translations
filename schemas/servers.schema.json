@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "servers/<community>.json",
-  "description": "The server naming rules of one community, <community> being its ID in NERV's global settings, in the translation repository CuleSKY/nerv-translations. The site takes a merged version only when every file passes this schema and the checks it cannot express: variables, duplicate rules and addresses.",
+  "description": "The server naming rules of one community, <community> being its ID in NERV's global settings, in the translation repository CuleSKY/nerv-translations. The site takes a merged version only when every file passes this schema and the checks it cannot express: variables, duplicate rules, addresses, labels and marks, and labels server-labels.json does not have.",
   "$ref": "#/$defs/NamingFile",
   "$defs": {
     "NamedServer": {
@@ -12,6 +12,16 @@
           "maxLength": 259,
           "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}|(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?):(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{0,3})$",
           "type": "string"
+        },
+        "labels": {
+          "description": "IDs of server-labels.json's labels for the server, in the order they show; a language whose name the entry gives shows them next to the name",
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9-]{0,31}$",
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
         },
         "names": {
           "additionalProperties": false,
@@ -70,11 +80,50 @@
       },
       "type": "object"
     },
+    "NamingMark": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "description": "The ID of the label the mark becomes, after the rule's labels; left out, the mark is dropped",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,31}$",
+          "type": "string"
+        },
+        "text": {
+          "description": "The mark as the community writes it, compared exactly; it is taken out wherever it is in the name, with the space next to it",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "type": "object"
+    },
     "NamingRule": {
       "additionalProperties": false,
       "properties": {
+        "labels": {
+          "description": "IDs of server-labels.json's labels for the servers the rule names, in the order they show; a language whose name the rule gives shows them next to the name",
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9-]{0,31}$",
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
+        },
+        "marks": {
+          "description": "Temporary marks the community puts in its servers' original names, such as [已人满]; each is taken out of the name before the match is compared, and is dropped or becomes a label. A server no rule matches shows its original name, marks and all",
+          "items": {
+            "$ref": "#/$defs/NamingMark"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
+        },
         "match": {
-          "description": "A whole original name, compared exactly, in which {variable} stands for text that varies (at least one character); {{ and }} are literal braces",
+          "description": "A whole original name, compared exactly, in which {variable} stands for text that varies (at least one character); {{ and }} are literal braces. The rule's marks are taken out of the name before it is compared",
           "maxLength": 256,
           "minLength": 1,
           "type": "string"

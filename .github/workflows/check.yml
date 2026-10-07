@@ -41,6 +41,10 @@ jobs:
               status=1
             fi
           done < <(find servers \( -type f -o -type l \) -name '*.json' -print0 2>/dev/null)
+          if [[ -L server-labels.json ]]; then
+            echo "::error file=server-labels.json::the server label dictionary must be a regular file, not a link"
+            status=1
+          fi
           # maps/ holds only the tag dictionary and one map-name file per
           # game, named by the game's Steam AppID (a 32-bit number).
           while IFS= read -r -d '' file; do
@@ -88,7 +92,7 @@ jobs:
       - name: Check the JSON
         shell: bash
         run: |
-          mapfile -d '' files < <(find servers maps/names maps/tags.json search/aliases reminders -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
+          mapfile -d '' files < <(find servers server-labels.json maps/names maps/tags.json search/aliases reminders -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
           if (( ${#files[@]} == 0 )); then
             exit 0
           fi
@@ -117,15 +121,24 @@ jobs:
                   status = 1
           sys.exit(status)
           PY
+      # The labels the naming rules give must be in the label dictionary;
+      # the site checks that after a merge.
       - name: Check the server naming files
         shell: bash
         run: |
+          status=0
           mapfile -d '' files < <(find servers -maxdepth 1 -type f -name '*.json' -print0 2>/dev/null | sort -z)
           if (( ${#files[@]} == 0 )); then
             echo "No naming file."
-            exit 0
+          else
+            check-jsonschema --schemafile schemas/servers.schema.json "${files[@]}" || status=1
           fi
-          check-jsonschema --schemafile schemas/servers.schema.json "${files[@]}"
+          if [[ -f server-labels.json && ! -L server-labels.json ]]; then
+            check-jsonschema --schemafile schemas/server-labels.schema.json server-labels.json || status=1
+          else
+            echo "No server label dictionary."
+          fi
+          exit $status
       - name: Check the map files
         shell: bash
         run: |

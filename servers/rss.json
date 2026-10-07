@@ -1,0 +1,40 @@
+{
+  "rules": [
+    {
+      "match": "[RSS] 좀비 탈출 {rest}",
+      "names": {
+        "en": "RSS Zombie Escape",
+        "zh-CN": "RSS 僵尸逃跑",
+        "ja": "RSS ゾンビエスケープ",
+        "ko": "RSS 좀비 탈출"
+      }
+    },
+    {
+      "match": "[RSS] 미니게임 서버 {rest}",
+      "names": {
+        "en": "RSS Mini-Games",
+        "zh-CN": "RSS 娱乐闯关",
+        "ja": "RSS ミニゲーム",
+        "ko": "RSS 미니게임 서버"
+      }
+    },
+    {
+      "match": "[RSS] KZ 등산서버 초급반(1~4티어) {rest}",
+      "names": {
+        "en": "RSS KZ Beginner (Tier 1–4)",
+        "zh-CN": "RSS KZ 初级（T1–T4）",
+        "ja": "RSS KZ 初級（Tier 1〜4）",
+        "ko": "RSS KZ 초급반 (1~4티어)"
+      }
+    },
+    {
+      "match": "[RSS] KZ 등산서버 고급반(5~8티어) {rest}",
+      "names": {
+        "en": "RSS KZ Advanced (Tier 5–8)",
+        "zh-CN": "RSS KZ 高级（T5–T8）",
+        "ja": "RSS KZ 上級（Tier 5〜8）",
+        "ko": "RSS KZ 고급반 (5~8티어)"
+      }
+    }
+  ]
+}

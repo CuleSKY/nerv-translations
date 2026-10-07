@@ -1,9 +1,156 @@
 {
   "rules": [
     {
-      "match": "【僵尸乐园】 CS2 攀岩 Kz 困难 #{编号}",
+      "match": "【僵尸乐园】 CS2 ZE #{n}",
       "names": {
-        "en": "ZombiEden CS2 KZ Hard #{编号}"
+        "en": "ZombiEden CS2 ZE #{n}",
+        "zh-CN": "僵尸乐园 CS2 ZE #{n}",
+        "ja": "ZombiEden CS2 ZE #{n}",
+        "ko": "ZombiEden CS2 ZE #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 简单 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 KZ Easy #{n}",
+        "zh-CN": "僵尸乐园 CS2 攀岩 KZ 简单 #{n}",
+        "ja": "ZombiEden CS2 KZ 初級 #{n}",
+        "ko": "ZombiEden CS2 KZ 초급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 中等 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 KZ Medium #{n}",
+        "zh-CN": "僵尸乐园 CS2 攀岩 KZ 中等 #{n}",
+        "ja": "ZombiEden CS2 KZ 中級 #{n}",
+        "ko": "ZombiEden CS2 KZ 중급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 困难 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 KZ Hard #{n}",
+        "zh-CN": "僵尸乐园 CS2 攀岩 KZ 困难 #{n}",
+        "ja": "ZombiEden CS2 KZ 上級 #{n}",
+        "ko": "ZombiEden CS2 KZ 고급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 简单 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Bhop Easy #{n}",
+        "zh-CN": "僵尸乐园 CS2 连跳 简单 #{n}",
+        "ja": "ZombiEden CS2 Bhop 初級 #{n}",
+        "ko": "ZombiEden CS2 Bhop 초급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 中等 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Bhop Medium #{n}",
+        "zh-CN": "僵尸乐园 CS2 连跳 中等 #{n}",
+        "ja": "ZombiEden CS2 Bhop 中級 #{n}",
+        "ko": "ZombiEden CS2 Bhop 중급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 困难 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Bhop Hard #{n}",
+        "zh-CN": "僵尸乐园 CS2 连跳 困难 #{n}",
+        "ja": "ZombiEden CS2 Bhop 上級 #{n}",
+        "ko": "ZombiEden CS2 Bhop 고급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 简单 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Surf Easy #{n}",
+        "zh-CN": "僵尸乐园 CS2 滑翔 简单 #{n}",
+        "ja": "ZombiEden CS2 サーフ 初級 #{n}",
+        "ko": "ZombiEden CS2 서핑 초급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 中等 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Surf Medium #{n}",
+        "zh-CN": "僵尸乐园 CS2 滑翔 中等 #{n}",
+        "ja": "ZombiEden CS2 サーフ 中級 #{n}",
+        "ko": "ZombiEden CS2 서핑 중급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 困难 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Surf Hard #{n}",
+        "zh-CN": "僵尸乐园 CS2 滑翔 困难 #{n}",
+        "ja": "ZombiEden CS2 サーフ 上級 #{n}",
+        "ko": "ZombiEden CS2 서핑 고급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 娱乐闯关 简单 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Mini-Games Easy #{n}",
+        "zh-CN": "僵尸乐园 CS2 娱乐闯关 简单 #{n}",
+        "ja": "ZombiEden CS2 ミニゲーム 初級 #{n}",
+        "ko": "ZombiEden CS2 미니게임 초급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 娱乐闯关 中等 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Mini-Games Medium #{n}",
+        "zh-CN": "僵尸乐园 CS2 娱乐闯关 中等 #{n}",
+        "ja": "ZombiEden CS2 ミニゲーム 中級 #{n}",
+        "ko": "ZombiEden CS2 미니게임 중급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 CS2 娱乐闯关 困难 #{n}",
+      "names": {
+        "en": "ZombiEden CS2 Mini-Games Hard #{n}",
+        "zh-CN": "僵尸乐园 CS2 娱乐闯关 困难 #{n}",
+        "ja": "ZombiEden CS2 ミニゲーム 上級 #{n}",
+        "ko": "ZombiEden CS2 미니게임 고급 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 娱乐对抗 #{n} test",
+      "names": {
+        "en": "ZombiEden Casual Versus #{n} (Test)",
+        "zh-CN": "僵尸乐园 娱乐对抗 #{n}（测试）",
+        "ja": "ZombiEden カジュアル対戦 #{n}（テスト）",
+        "ko": "ZombiEden 캐주얼 대전 #{n} (테스트)"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 娱乐对抗 #{n}",
+      "names": {
+        "en": "ZombiEden Casual Versus #{n}",
+        "zh-CN": "僵尸乐园 娱乐对抗 #{n}",
+        "ja": "ZombiEden カジュアル対戦 #{n}",
+        "ko": "ZombiEden 캐주얼 대전 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 娱乐混战 #{n}",
+      "names": {
+        "en": "ZombiEden Casual Deathmatch #{n}",
+        "zh-CN": "僵尸乐园 娱乐混战 #{n}",
+        "ja": "ZombiEden カジュアルデスマッチ #{n}",
+        "ko": "ZombiEden 캐주얼 데스매치 #{n}"
+      }
+    },
+    {
+      "match": "【僵尸乐园】 幻想乡大厅",
+      "names": {
+        "en": "ZombiEden Gensokyo Lobby",
+        "zh-CN": "僵尸乐园 幻想乡大厅",
+        "ja": "ZombiEden 幻想郷ロビー",
+        "ko": "ZombiEden 환상향 로비"
       }
     }
   ]

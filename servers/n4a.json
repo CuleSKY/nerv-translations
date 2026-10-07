@@ -1,0 +1,40 @@
+{
+  "rules": [
+    {
+      "match": "CSDM::[Net4All.RU]~Пушки + Лазеры~[CS 2]",
+      "names": {
+        "en": "N4A CS2 Deathmatch: Guns + Lasers",
+        "zh-CN": "N4A CS2 死斗：枪械 + 激光",
+        "ja": "N4A CS2 デスマッチ：銃＋レーザー",
+        "ko": "N4A CS2 데스매치: 총 + 레이저"
+      }
+    },
+    {
+      "match": "[GUNGAME] CSDM::[Net4All.RU]~Пушки + Лазеры~[CS:GO]",
+      "names": {
+        "en": "N4A CSGO GunGame Deathmatch: Guns + Lasers",
+        "zh-CN": "N4A CSGO 军备竞赛死斗：枪械 + 激光",
+        "ja": "N4A CSGO ガンゲーム デスマッチ：銃＋レーザー",
+        "ko": "N4A CSGO 건게임 데스매치: 총 + 레이저"
+      }
+    },
+    {
+      "match": "Zombie::[Net4ALL.RU]::FastDL|SSD [CS:GO]",
+      "names": {
+        "en": "N4A CSGO Zombie Escape",
+        "zh-CN": "N4A CSGO 僵尸逃跑",
+        "ja": "N4A CSGO ゾンビエスケープ",
+        "ko": "N4A CSGO 좀비 탈출"
+      }
+    },
+    {
+      "match": "Zombie::[Net4ALL.RU]::Workshop|SSD [CS 2]",
+      "names": {
+        "en": "N4A CS2 Zombie Escape",
+        "zh-CN": "N4A CS2 僵尸逃跑",
+        "ja": "N4A CS2 ゾンビエスケープ",
+        "ko": "N4A CS2 좀비 탈출"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "match": "☣️ ZOMBIE ESCAPE ☣️ {rest}",
+      "names": {
+        "en": "coLA CS2 Zombie Escape",
+        "zh-CN": "coLA CS2 僵尸逃跑",
+        "ja": "coLA CS2 ゾンビエスケープ",
+        "ko": "coLA CS2 좀비 탈출"
+      }
+    },
+    {
+      "match": "⭐ CS2 SURF T1-3 ⭐ {rest}",
+      "names": {
+        "en": "coLA CS2 Surf T1-3",
+        "zh-CN": "coLA CS2 滑翔 T1-3",
+        "ja": "coLA CS2 サーフ T1-3",
+        "ko": "coLA CS2 서핑 T1-3"
+      }
+    }
+  ]
+}

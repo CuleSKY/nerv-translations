@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "match": "GFL Zombie Escape 24/7 {rest}",
+      "names": {
+        "en": "GFL Zombie Escape 24/7",
+        "zh-CN": "GFL 僵尸逃跑 24/7",
+        "ja": "GFL ゾンビエスケープ 24/7",
+        "ko": "GFL 좀비 탈출 24/7"
+      }
+    }
+  ]
+}

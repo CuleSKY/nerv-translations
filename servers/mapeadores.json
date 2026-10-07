@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "match": "[EU] .:MAPEADORES:. CS2 ZOMBIE ESCAPE {rest}",
+      "names": {
+        "en": "Mapeadores CS2 Zombie Escape (EU)",
+        "zh-CN": "Mapeadores CS2 僵尸逃跑（欧洲）",
+        "ja": "Mapeadores CS2 ゾンビエスケープ（ヨーロッパ）",
+        "ko": "Mapeadores CS2 좀비 탈출 (유럽)"
+      }
+    }
+  ]
+}

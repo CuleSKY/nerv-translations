@@ -62,6 +62,42 @@
         "ja": "FYS CSGO TTT #{n}",
         "ko": "FYS CSGO TTT #{n}"
       }
+    },
+    {
+      "match": "【風  雲】 滑翔竞速[SF] {n}# Q群:{qq} 新手",
+      "names": {
+        "en": "FYS CSGO Surf #{n} Beginner",
+        "zh-CN": "风云社 CSGO 滑翔竞速 #{n} 新手",
+        "ja": "FYS CSGO サーフ #{n} 初心者",
+        "ko": "FYS CSGO 서핑 #{n} 초보자"
+      }
+    },
+    {
+      "match": "【風  雲】 连跳竞赛[BHOP] {n}# Q群:{qq} 新手",
+      "names": {
+        "en": "FYS CSGO Bhop #{n} Beginner",
+        "zh-CN": "风云社 CSGO 连跳竞赛 #{n} 新手",
+        "ja": "FYS CSGO Bhop #{n} 初心者",
+        "ko": "FYS CSGO Bhop #{n} 초보자"
+      }
+    },
+    {
+      "match": "【風  雲】 娱乐休闲[MG] {n}# Q群:{qq} 128tick",
+      "names": {
+        "en": "FYS CSGO Mini-Games #{n} 128-tick",
+        "zh-CN": "风云社 CSGO 娱乐休闲 #{n} 128tick",
+        "ja": "FYS CSGO ミニゲーム #{n} 128tick",
+        "ko": "FYS CSGO 미니게임 #{n} 128틱"
+      }
+    },
+    {
+      "match": "【風  雲】 魔兽混战[War3] #{n} Q群:{qq}",
+      "names": {
+        "en": "FYS CSGO Beast Deathmatch #{n}",
+        "zh-CN": "风云社 CSGO 魔兽混战 #{n}",
+        "ja": "FYS CSGO ビーストデスマッチ #{n}",
+        "ko": "FYS CSGO 비스트 데스매치 #{n}"
+      }
     }
   ]
 }

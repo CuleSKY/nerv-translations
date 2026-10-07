@@ -35,6 +35,15 @@
         "ja": "RSS KZ 上級（Tier 5〜8）",
         "ko": "RSS KZ 고급반 (5~8티어)"
       }
+    },
+    {
+      "match": "[RSS] 미겜시 {rest}",
+      "names": {
+        "en": "RSS Mini-Games",
+        "zh-CN": "RSS 娱乐闯关",
+        "ja": "RSS ミニゲーム",
+        "ko": "RSS 미겜시"
+      }
     }
   ]
 }

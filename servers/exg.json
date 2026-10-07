@@ -1,0 +1,85 @@
+{
+  "rules": [
+    {
+      "match": "僵尸逃跑ZE #{n} [热门]",
+      "names": {
+        "en": "EXG Zombie Escape #{n} [Hot]",
+        "zh-CN": "EXG 僵尸逃跑 #{n} [热门]",
+        "ja": "EXG ゾンビエスケープ #{n} [人気]",
+        "ko": "EXG 좀비 탈출 #{n} [인기]"
+      }
+    },
+    {
+      "match": "僵尸逃跑ZE 装备#{n} 无宵禁",
+      "names": {
+        "en": "EXG Zombie Escape Gear #{n} No Curfew",
+        "zh-CN": "EXG 僵尸逃跑 装备 #{n} 无宵禁",
+        "ja": "EXG ゾンビエスケープ 装備 #{n} 夜間制限なし",
+        "ko": "EXG 좀비 탈출 장비 #{n} 통금 없음"
+      }
+    },
+    {
+      "match": "僵尸逃跑ZE 装备#{n}",
+      "names": {
+        "en": "EXG Zombie Escape Gear #{n}",
+        "zh-CN": "EXG 僵尸逃跑 装备 #{n}",
+        "ja": "EXG ゾンビエスケープ 装備 #{n}",
+        "ko": "EXG 좀비 탈출 장비 #{n}"
+      }
+    },
+    {
+      "match": "僵尸逃跑ZE #{n}",
+      "names": {
+        "en": "EXG Zombie Escape #{n}",
+        "zh-CN": "EXG 僵尸逃跑 #{n}",
+        "ja": "EXG ゾンビエスケープ #{n}",
+        "ko": "EXG 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "PVE模式 #{n}",
+      "names": {
+        "en": "EXG PvE Mode #{n}",
+        "zh-CN": "EXG PVE模式 #{n}",
+        "ja": "EXG PvEモード #{n}",
+        "ko": "EXG PvE 모드 #{n}"
+      }
+    },
+    {
+      "match": "躲猫猫 #{n}",
+      "names": {
+        "en": "EXG Prop Hunt #{n}",
+        "zh-CN": "EXG 躲猫猫 #{n}",
+        "ja": "EXG かくれんぼ #{n}",
+        "ko": "EXG 숨바꼭질 #{n}"
+      }
+    },
+    {
+      "match": "娱乐闯关MG #{n}",
+      "names": {
+        "en": "EXG Mini-Games #{n}",
+        "zh-CN": "EXG 娱乐闯关 #{n}",
+        "ja": "EXG ミニゲーム #{n}",
+        "ko": "EXG 미니게임 #{n}"
+      }
+    },
+    {
+      "match": "滑翔SURF #{n}",
+      "names": {
+        "en": "EXG Surf #{n}",
+        "zh-CN": "EXG 滑翔 #{n}",
+        "ja": "EXG サーフ #{n}",
+        "ko": "EXG 서핑 #{n}"
+      }
+    },
+    {
+      "match": "挂机大厅 #{n}",
+      "names": {
+        "en": "EXG AFK Lobby #{n}",
+        "zh-CN": "EXG 挂机大厅 #{n}",
+        "ja": "EXG 放置ロビー #{n}",
+        "ko": "EXG 잠수 로비 #{n}"
+      }
+    }
+  ]
+}

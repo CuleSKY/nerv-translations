@@ -1,0 +1,94 @@
+{
+  "rules": [
+    {
+      "match": "UB社区 CS2 僵尸逃跑 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CS2 Zombie Escape #{n}",
+        "zh-CN": "UB CS2 僵尸逃跑 #{n}",
+        "ja": "UB CS2 ゾンビエスケープ #{n}",
+        "ko": "UB CS2 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 僵尸逃跑 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CSGO Zombie Escape #{n}",
+        "zh-CN": "UB CSGO 僵尸逃跑 #{n}",
+        "ja": "UB CSGO ゾンビエスケープ #{n}",
+        "ko": "UB CSGO 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 生化模式3:英雄 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CS2 Zombie Mod 3: Hero #{n}",
+        "zh-CN": "UB CS2 生化模式3:英雄 #{n}",
+        "ja": "UB CS2 ゾンビモード3：ヒーロー #{n}",
+        "ko": "UB CS2 좀비 모드 3: 영웅 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 CS2 攀岩竞速 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CS2 KZ #{n}",
+        "zh-CN": "UB CS2 攀岩竞速 #{n}",
+        "ja": "UB CS2 KZ #{n}",
+        "ko": "UB CS2 KZ #{n}"
+      }
+    },
+    {
+      "match": "UB社区 攀岩竞速 #{n} GOKZ {tiers} Q群 {qq}",
+      "names": {
+        "en": "UB CSGO GOKZ #{n} {tiers}",
+        "zh-CN": "UB CSGO 攀岩竞速 #{n} GOKZ {tiers}",
+        "ja": "UB CSGO GOKZ #{n} {tiers}",
+        "ko": "UB CSGO GOKZ #{n} {tiers}"
+      }
+    },
+    {
+      "match": "UB社区 CS2 滑翔竞速 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CS2 Surf #{n}",
+        "zh-CN": "UB CS2 滑翔竞速 #{n}",
+        "ja": "UB CS2 サーフ #{n}",
+        "ko": "UB CS2 서핑 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 CS2 女装混战 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CS2 Crossdress Deathmatch #{n}",
+        "zh-CN": "UB CS2 女装混战 #{n}",
+        "ja": "UB CS2 女装デスマッチ #{n}",
+        "ko": "UB CS2 여장 데스매치 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 娱乐混战 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CSGO Casual Deathmatch #{n}",
+        "zh-CN": "UB CSGO 娱乐混战 #{n}",
+        "ja": "UB CSGO カジュアルデスマッチ #{n}",
+        "ko": "UB CSGO 캐주얼 데스매치 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 休闲对抗 #{n} Q群 {qq}",
+      "names": {
+        "en": "UB CSGO Casual Versus #{n}",
+        "zh-CN": "UB CSGO 休闲对抗 #{n}",
+        "ja": "UB CSGO カジュアル対戦 #{n}",
+        "ko": "UB CSGO 캐주얼 대전 #{n}"
+      }
+    },
+    {
+      "match": "UB社区 休闲大厅",
+      "names": {
+        "en": "UB CS2 Lobby",
+        "zh-CN": "UB CS2 休闲大厅",
+        "ja": "UB CS2 ロビー",
+        "ko": "UB CS2 로비"
+      }
+    }
+  ]
+}

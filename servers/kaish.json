@@ -1,0 +1,31 @@
+{
+  "rules": [
+    {
+      "match": "「开水服」ZE训练 #{n}",
+      "names": {
+        "en": "KepCS ZE Training #{n}",
+        "zh-CN": "开水服 ZE训练 #{n}",
+        "ja": "KepCS ZE練習 #{n}",
+        "ko": "KepCS ZE 훈련 #{n}"
+      }
+    },
+    {
+      "match": "「开水服」ZE跑图 #{n}",
+      "names": {
+        "en": "KepCS ZE Map Runs #{n}",
+        "zh-CN": "开水服 ZE跑图 #{n}",
+        "ja": "KepCS ZEマップ走行 #{n}",
+        "ko": "KepCS ZE 맵 주행 #{n}"
+      }
+    },
+    {
+      "match": "「开水服」KZ全球 #{n}",
+      "names": {
+        "en": "KepCS KZ Global #{n}",
+        "zh-CN": "开水服 KZ全球 #{n}",
+        "ja": "KepCS KZグローバル #{n}",
+        "ko": "KepCS KZ 글로벌 #{n}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "rules": [
+    {
+      "match": "UNLOZE | Zombie Escape  | Nosteam",
+      "names": {
+        "en": "Unloze Zombie Escape",
+        "zh-CN": "Unloze 僵尸逃跑",
+        "ja": "Unloze ゾンビエスケープ",
+        "ko": "Unloze 좀비 탈출"
+      }
+    },
+    {
+      "match": "UNLOZE.com/stoat | Zombie Escape {n}",
+      "names": {
+        "en": "Unloze Zombie Escape {n}",
+        "zh-CN": "Unloze 僵尸逃跑 {n}",
+        "ja": "Unloze ゾンビエスケープ {n}",
+        "ko": "Unloze 좀비 탈출 {n}"
+      }
+    },
+    {
+      "match": "UNLOZE | Minigames | {rest}",
+      "names": {
+        "en": "Unloze Mini-Games",
+        "zh-CN": "Unloze 娱乐闯关",
+        "ja": "Unloze ミニゲーム",
+        "ko": "Unloze 미니게임"
+      }
+    },
+    {
+      "match": "UNLOZE.com/stoat | [ZRiot: {day}] {stage} | Ranking",
+      "names": {
+        "en": "Unloze ZRiot [{day}] {stage}",
+        "zh-CN": "Unloze ZRiot [{day}] {stage}",
+        "ja": "Unloze ZRiot [{day}] {stage}",
+        "ko": "Unloze ZRiot [{day}] {stage}"
+      }
+    }
+  ]
+}

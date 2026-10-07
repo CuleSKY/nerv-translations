@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "match": "[X社区(UPKK)] CS2 僵尸逃跑 #{n}",
+      "names": {
+        "en": "93X CS2 Zombie Escape #{n}",
+        "zh-CN": "93X CS2 僵尸逃跑 #{n}",
+        "ja": "93X CS2 ゾンビエスケープ #{n}",
+        "ko": "93X CS2 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "[UPKK]CS2 KZ #{n}",
+      "names": {
+        "en": "93X CS2 KZ #{n}",
+        "zh-CN": "93X CS2 KZ #{n}",
+        "ja": "93X CS2 KZ #{n}",
+        "ko": "93X CS2 KZ #{n}"
+      }
+    }
+  ]
+}

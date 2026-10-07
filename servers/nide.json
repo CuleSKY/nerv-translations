@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "match": "Zombie Escape ● NiDE.GG ● NoSteam {rest}",
+      "names": {
+        "en": "NiDE Zombie Escape NoSteam",
+        "zh-CN": "NiDE 僵尸逃跑 NoSteam",
+        "ja": "NiDE ゾンビエスケープ NoSteam",
+        "ko": "NiDE 좀비 탈출 NoSteam"
+      }
+    },
+    {
+      "match": "Zombie Revival ● NiDE.GG ● NoSteam{rest}",
+      "names": {
+        "en": "NiDE Zombie Revival NoSteam",
+        "zh-CN": "NiDE 僵尸复活 NoSteam",
+        "ja": "NiDE ゾンビリバイバル NoSteam",
+        "ko": "NiDE 좀비 리바이벌 NoSteam"
+      }
+    }
+  ]
+}

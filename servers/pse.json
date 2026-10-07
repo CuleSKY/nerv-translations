@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "match": "[JP] Zombie Escape :: POSSESSION {rest}",
+      "names": {
+        "en": "PSE Zombie Escape (JP)",
+        "zh-CN": "PSE 僵尸逃跑（日本）",
+        "ja": "PSE ゾンビエスケープ（日本）",
+        "ko": "PSE 좀비 탈출 (일본)"
+      }
+    }
+  ]
+}

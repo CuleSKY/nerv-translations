@@ -1,0 +1,67 @@
+{
+  "rules": [
+    {
+      "match": "❤️【風  雲】 僵尸逃跑 {n}# Q群:{qq}",
+      "names": {
+        "en": "FYS CS2 Zombie Escape #{n}",
+        "zh-CN": "风云社 CS2 僵尸逃跑 #{n}",
+        "ja": "FYS CS2 ゾンビエスケープ #{n}",
+        "ko": "FYS CS2 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "【風  雲】 僵尸逃跑[ZE] {n}# Q群:{qq} 多线CN",
+      "names": {
+        "en": "FYS CSGO Zombie Escape #{n}",
+        "zh-CN": "风云社 CSGO 僵尸逃跑 #{n}",
+        "ja": "FYS CSGO ゾンビエスケープ #{n}",
+        "ko": "FYS CSGO 좀비 탈출 #{n}"
+      }
+    },
+    {
+      "match": "❤️【風  雲】 闲聊大厅 {n}# 单挑/聊天/金蛋",
+      "names": {
+        "en": "FYS CS2 Lobby #{n} 1v1 / Chat / Golden Egg",
+        "zh-CN": "风云社 CS2 闲聊大厅 #{n} 单挑/聊天/金蛋",
+        "ja": "FYS CS2 ロビー #{n} タイマン／チャット／金の卵",
+        "ko": "FYS CS2 로비 #{n} 1대1 / 채팅 / 황금알"
+      }
+    },
+    {
+      "match": "❤️【風  雲】 娱乐休闲 {n}#",
+      "names": {
+        "en": "FYS CS2 Mini-Games #{n}",
+        "zh-CN": "风云社 CS2 娱乐休闲 #{n}",
+        "ja": "FYS CS2 ミニゲーム #{n}",
+        "ko": "FYS CS2 미니게임 #{n}"
+      }
+    },
+    {
+      "match": "❤️【風  雲】 魔兽混战 {n}#",
+      "names": {
+        "en": "FYS CS2 Beast Deathmatch #{n}",
+        "zh-CN": "风云社 CS2 魔兽混战 #{n}",
+        "ja": "FYS CS2 ビーストデスマッチ #{n}",
+        "ko": "FYS CS2 비스트 데스매치 #{n}"
+      }
+    },
+    {
+      "match": "❤️【風  雲】 匪镇谍影 {n}# Q群:{qq}",
+      "names": {
+        "en": "FYS CS2 Trouble in Terrorist Town #{n}",
+        "zh-CN": "风云社 CS2 匪镇谍影 #{n}",
+        "ja": "FYS CS2 TTT #{n}",
+        "ko": "FYS CS2 TTT #{n}"
+      }
+    },
+    {
+      "match": "【風  雲】 匪镇谍影[TT] {n}# Q群:{qq} 多线CN",
+      "names": {
+        "en": "FYS CSGO Trouble in Terrorist Town #{n}",
+        "zh-CN": "风云社 CSGO 匪镇谍影 #{n}",
+        "ja": "FYS CSGO TTT #{n}",
+        "ko": "FYS CSGO TTT #{n}"
+      }
+    }
+  ]
+}

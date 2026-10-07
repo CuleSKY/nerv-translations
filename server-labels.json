@@ -1,0 +1,6 @@
+{
+  "labels": [
+    {"id": "gear", "word": "装备", "names": {"en": "Gear", "zh-CN": "装备", "ja": "装備", "ko": "장비"}},
+    {"id": "hot", "word": "热门", "names": {"en": "Hot", "zh-CN": "热门", "ja": "人気", "ko": "인기"}}
+  ]
+}

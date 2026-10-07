@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "server-labels.json",
+  "description": "The server label dictionary in the translation repository CuleSKY/nerv-translations: the labels the naming rules give servers, such as EXG's 装备 and 热门, with the community's word and the words by language. The site takes a merged version only when every file passes this schema and the checks it cannot express: an ID given twice, blank words.",
+  "$ref": "#/$defs/ServerLabelsFile",
+  "$defs": {
+    "ServerLabelEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "The label's ID, which the naming rules give",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,31}$",
+          "type": "string"
+        },
+        "names": {
+          "additionalProperties": false,
+          "description": "The label's word by language: en, zh-CN, ja, ko. A language left out shows the community's word, never another language's; zh-Hant is converted from zh-CN",
+          "minProperties": 1,
+          "properties": {
+            "en": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ja": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            },
+            "ko": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            },
+            "zh-CN": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "word": {
+          "description": "The community's own word for the label, e.g. 装备; a language names leaves out shows it",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "word"
+      ],
+      "type": "object"
+    },
+    "ServerLabelsFile": {
+      "additionalProperties": false,
+      "properties": {
+        "labels": {
+          "description": "The server labels the naming rules give",
+          "items": {
+            "$ref": "#/$defs/ServerLabelEntry"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "labels"
+      ],
+      "type": "object"
+    }
+  }
+}

@@ -7,6 +7,7 @@ NERV 网站的翻译仓库。任何人都可以提 PR，也可以用 AI 起草�
 ## 文件
 
 - `servers/<社区>.json`：一个社区的服务器命名规则。`<社区>` 是这个社区在 NERV 里的标识，小写字母、数字与连字符，以字母或数字开头，最长 32 个字符，例如 `zed`、`ub`、`exg`；文件直接放在 `servers/` 下，不建子目录。
+- `server-labels.json`：服务器标签词典，放在仓库根目录。
 - `maps/names/<游戏>.json`：一个游戏的地图译名。`<游戏>` 是这个游戏的 Steam AppID，只写数字，例如 CS2 是 `730`；文件直接放在 `maps/names/` 下。
 - `maps/tags.json`：ZE 标签词典。`maps/` 下只放这个文件与 `maps/names/<游戏>.json`。
 - `search/aliases/<游戏>.json`：一个游戏的搜索正式关系，写明玩家的叫法指哪些图。`<游戏>` 同样是 Steam AppID；`search/` 下只放这些文件。
@@ -43,6 +44,45 @@ NERV 网站的翻译仓库。任何人都可以提 PR，也可以用 AI 起草�
 - 一个文件里按顺序取第一条匹配的规则。
 - `servers` 按连接地址给某一台服单独起名，优先于规则，名字里不能用变量。地址写成网站显示的样子：小写的域名或 IPv4，加端口，例如 `cs1.zombieden.cn:27015`、`110.42.9.31:27111`。
 - `rules` 与 `servers` 都可以省略。
+
+### 标签与临时标记
+
+社区常给一类服挂上属性，例如 EXG 的装备服、热门服。这些属性不写进名字，写成标签，显示在名字旁：
+
+```json
+{
+  "rules": [
+    {
+      "match": "僵尸逃跑ZE 装备#{n}",
+      "names": {"en": "EXG Zombie Escape #{n}", "zh-CN": "EXG 僵尸逃跑 #{n}"},
+      "labels": ["gear"],
+      "marks": [{"text": "[热门]", "label": "hot"}, {"text": "[已人满]"}]
+    }
+  ]
+}
+```
+
+- `labels` 写这条规则的服带哪些标签，写 `server-labels.json` 里的标签 `id`，按写的顺序显示，同一个标签只写一次。`servers` 里单独起名的服也可以写 `labels`。
+- `marks` 写社区在原名里临时挂的标记，例如 EXG 的"[已人满]""[热门]"，逐字比较。比较 `match` 之前先把这些标记连同旁边的一个空格从原名里去掉；写了 `label` 的标记变成这个标签，排在 `labels` 之后，没写的直接丢掉。上面的规则让"僵尸逃跑ZE 装备#12 [热门]"显示"EXG 僵尸逃跑 #12"，带"装备""热门"两个标签；"[已人满]"只是去掉，满不满看人数。
+- 标记只按规则去掉：没有规则匹配的服，原名连同标记照原样显示，不带标签。标记不要写进同一条规则的 `match`，否则这条规则匹配不到带标记的名字。
+- 规则没写某种语言的名字时，这种语言显示原名，也不另显示标签，原名里已经写着。
+
+## 服务器标签词典
+
+`server-labels.json` 写每个服务器标签的各语言写法，规则只写用哪个标签，社区改了叫法只改这一处：
+
+```json
+{
+  "labels": [
+    {"id": "gear", "word": "装备", "names": {"en": "Gear", "zh-CN": "装备", "ja": "装備", "ko": "장비"}},
+    {"id": "hot", "word": "热门", "names": {"en": "Hot", "zh-CN": "热门", "ja": "人気", "ko": "인기"}}
+  ]
+}
+```
+
+- `id` 是标签的标识，规则按它写标签：小写字母、数字与连字符，以字母或数字开头，最长 32 个字符；一个 `id` 只写一次。
+- `word` 是社区自己的叫法。
+- `names` 按语言写标签：`en`、`zh-CN`、`ja`、`ko`，可以省略。没写的语言显示 `word`，不拿英语或其他语言代替；繁体中文由简体转换。
 
 ## 地图译名
 
@@ -138,7 +178,7 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
 ## 检查与生效
 
 - 提交 PR 或推送时，GitHub Actions 检查文件名、JSON 的写法，并按 `schemas/` 检查格式，不通过就改好再提交。
-- 合并后网站自动取到新版本（服务器名约 30 秒内更新，地图译名与标签约 90 秒内），先把整个仓库再检查一遍：除了格式，还有格式以外的检查，例如名字里的变量是否都在 `match` 里定义、大括号与变量的写法、同一文件里有没有重复的 `match`、同一个地址有没有写两次、同一张图有没有写两次（不分大小写）、地图译名里什么都没写的条目、标签的 `id` 或 EXG 词有没有重复、同一个叫法有没有写两次、一个叫法里有没有把同一张图写两次、一张图也没写的叫法、全是标点符号或空格的叫法、只有空格的名字、文件的大小与个数。只有全部文件都合格，这次合并才生效；任何一处不合格，这次合并的全部改动都不生效，网站继续用上一版，修好再合并即可。
+- 合并后网站自动取到新版本（服务器名与服务器标签约 30 秒内更新，地图译名与标签约 90 秒内），先把整个仓库再检查一遍：除了格式，还有格式以外的检查，例如名字里的变量是否都在 `match` 里定义、大括号与变量的写法、同一文件里有没有重复的 `match`、同一个地址有没有写两次、规则写的标签在不在标签词典里、标签或标记有没有写两次、标记是不是写进了自己规则的 `match`、标签词典的 `id` 有没有重复、同一张图有没有写两次（不分大小写）、地图译名里什么都没写的条目、标签的 `id` 或 EXG 词有没有重复、同一个叫法有没有写两次、一个叫法里有没有把同一张图写两次、一张图也没写的叫法、全是标点符号或空格的叫法、只有空格的名字、文件的大小与个数。只有全部文件都合格，这次合并才生效；任何一处不合格，这次合并的全部改动都不生效，网站继续用上一版，修好再合并即可。
 - 换图提醒的文字在 PR 里就查得出英语缺句与变量写错：`en.json` 缺了哪一句，或者哪一句少用、多用了变量（例如把"当前人数：{players} / {capacity}"里的 `{players}` 写成 `{player}`），检查不通过并指出这一句。合并后网站不取它们，后端发布时再查一遍：除了这些，还有大括号与变量的写法、只有空格的文字、`reminders/` 下有没有别的语言的文件、文件的大小与个数。任何一处不合格，这次发布一句也不取，提醒继续用上一版。
 
 ## English
@@ -148,6 +188,7 @@ The translation repository of the NERV website. Anyone may open a pull request, 
 ### Files
 
 - `servers/<community>.json`: the server naming rules of one community. `<community>` is the community's ID in NERV: lower-case letters, digits and hyphens, starting with a letter or digit, at most 32 characters, such as `zed`, `ub` or `exg`. The file sits directly under `servers/`.
+- `server-labels.json`: the server label dictionary, at the top of the repository.
 - `maps/names/<game>.json`: the map names of one game. `<game>` is the game's Steam AppID in digits, such as `730` for CS2. The file sits directly under `maps/names/`.
 - `maps/tags.json`: the ZE tag dictionary. `maps/` holds nothing but this file and `maps/names/<game>.json`.
 - `search/aliases/<game>.json`: the formal search relations of one game, which say what maps players' aliases mean. `<game>` is again the Steam AppID; `search/` holds nothing but these files.
@@ -167,6 +208,23 @@ Most server names are Chinese names the communities chose. A naming rule writes 
 - In a file, the first rule that matches applies.
 - `servers` names a single server by its connect address and comes before the rules; its names use no variables. Write the address as the website shows it: a lower-case domain or an IPv4 address, then the port, such as `cs1.zombieden.cn:27015` or `110.42.9.31:27111`.
 - `rules` and `servers` may each be left out.
+
+#### Labels and temporary marks
+
+Communities often mark a kind of server, such as EXG's gear servers and hot servers. Such marks are not part of the name: they are labels, shown next to the name; see the example above.
+
+- `labels` gives the labels of the servers a rule names, by their `id` in `server-labels.json`, in the order they show, each once. An entry of `servers` may give `labels` too.
+- `marks` gives the temporary marks a community puts in its original names, such as EXG's "[已人满]" and "[热门]", compared exactly. They are taken out of the name, with a space next to them, before `match` is compared; a mark with a `label` becomes that label, after the rule's `labels`, and one without is dropped. The rule above shows "僵尸逃跑ZE 装备#12 [热门]" as "EXG Zombie Escape #12" with the labels Gear and Hot; "[已人满]" is only taken out, as the player count shows whether a server is full.
+- Marks are taken out only by rules: a server no rule matches shows its original name, marks and all, with no label. Do not write a mark into its own rule's `match`, or the rule cannot match a name with the mark.
+- A language a rule gives no name in shows the original name and no labels, as the original name already says them.
+
+### Server label dictionary
+
+`server-labels.json` gives each server label's words by language; rules give only which labels, so a community's new word for a label changes one place; see the example above.
+
+- `id` identifies the label, and rules give labels by it: lower-case letters, digits and hyphens, starting with a letter or digit, at most 32 characters; each `id` once.
+- `word` is the community's own word for the label.
+- `names` gives the label's word by language, `en`, `zh-CN`, `ja` and `ko`, and may be left out. A language left out shows `word`; no other language, English included, stands in. Traditional Chinese is converted from Simplified Chinese.
 
 ### Map names
 
@@ -220,5 +278,5 @@ When a map a player subscribes to is on and has enough players, the website remi
 ### Checks
 
 - Every pull request and push is checked by GitHub Actions: file names, strict JSON, and the format against `schemas/`. Fix what it reports and push again.
-- The website fetches a merged version by itself (server names change within about 30 seconds, map names and tags within about 90 seconds) and first checks the whole repository again: the format, and what a schema cannot express, such as that every variable a name uses is defined by its `match`, how braces and variables are written, that no `match` appears twice in a file, that no address is named twice, that no map is named twice in a file (case ignored), that no map entry is empty, that no tag ID or EXG word is given twice, that no alias is given twice, that no alias gives a map twice, that every alias gives a map, that every alias has a letter, digit or Chinese character, that no name is only spaces, and the size and number of files. The merge takes effect only when every file passes; if anything fails, none of the merge takes effect and the website keeps the previous version until a fixed merge.
+- The website fetches a merged version by itself (server names and labels change within about 30 seconds, map names and tags within about 90 seconds) and first checks the whole repository again: the format, and what a schema cannot express, such as that every variable a name uses is defined by its `match`, how braces and variables are written, that no `match` appears twice in a file, that no address is named twice, that every label a rule gives is in the label dictionary, that no label or mark is given twice, that no mark is in its own rule's `match`, that no label ID is given twice in the dictionary, that no map is named twice in a file (case ignored), that no map entry is empty, that no tag ID or EXG word is given twice, that no alias is given twice, that no alias gives a map twice, that every alias gives a map, that every alias has a letter, digit or Chinese character, that no name is only spaces, and the size and number of files. The merge takes effect only when every file passes; if anything fails, none of the merge takes effect and the website keeps the previous version until a fixed merge.
 - A pull request already shows a reminder text English lacks or a variable written wrong: if `en.json` leaves a text out, or a text leaves out a variable or uses another (`{player}` for `{players}` in "Current players: {players} / {capacity}", say), the check fails and names the text. The website does not take the reminder texts at a merge; the backend's release checks them again, and also how braces and variables are written, that no text is only spaces, that `reminders/` holds no other language's file, and the size and number of files. If anything fails, the release takes none of the texts and reminders keep the previous version.

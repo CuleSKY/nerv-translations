@@ -167,12 +167,12 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
   - `title`：提醒的标题，不用变量；
   - `map`：这种语言没有地图译名时的地图一行，`{map}` 是原始地图名；
   - `map_with_name`：有译名时的地图一行，`{map}` 是原始地图名，`{name}` 是译名；
-  - `server`：服务器一行，`{server}` 是服务器名，网站已按需在名字前加上社区简称；
-  - `players`：当前人数一行，`{players}` 是送出提醒那一刻服务器上的人数，`{capacity}` 是服务器的容量；
+  - `server`：服务器一行，`{server}` 是服务器名，网站已按需在名字前加上社区简称，名字后跟着这台服的服务器标签，每个标签前是“ · ”，例如“EXG 僵尸逃跑 #5 · 热门”；
+  - `players`：当前人数一行，`{players}` 是送出提醒那一刻服务器上的真人数，`{capacity}` 是服务器的真人容量（容量减去 Bot，与网站服务器页的分母相同）；
   - `players_without_capacity`：不知道容量时的人数一行，`{players}` 是人数。
 - 每句只用自己的变量，而且全部用上，例如 `players` 要同时有 `{players}` 与 `{capacity}`。
 - `en.json` 写全六句；其他语言缺哪句，那一句显示英语。繁体中文由简体转换，不单独写。
-- 例如 FYS 的"僵尸逃跑[ZE] 19"换到 ze_alien_shooter_gp1_3，送出提醒时服务器上 52 人、容量 64：简体中文的提醒标题是"换图通知"，正文三行是"地图：ze_alien_shooter_gp1_3（孤胆枪手）""服务器：FYS 僵尸逃跑[ZE] 19""当前人数：52 / 64"。
+- 例如 FYS 的"僵尸逃跑[ZE] 19"换到 ze_alien_shooter_gp1_3，送出提醒时服务器上 52 人、容量 64：简体中文的提醒标题是"换图通知"，正文三行是"地图：ze_alien_shooter_gp1_3（孤胆枪手）""服务器：FYS 僵尸逃跑[ZE] 19""当前人数：52 / 64"。EXG 的"PVE模式 #1"换图时 31 名真人、29 个 Bot、容量 61：服务器一行是"服务器：EXG PVE模式 #1"，人数一行是"当前人数：31 / 32"。
 - 合并后不立即生效：后端下一次发布时取 main 上最新的提醒文字，在那之前提醒照旧。
 
 ## 检查与生效
@@ -267,12 +267,12 @@ When a map a player subscribes to is on and has enough players, the website remi
   - `title`: the reminder's title, with no variable;
   - `map`: the map's line when the language has no name for the map; `{map}` is the raw map name;
   - `map_with_name`: the map's line with its name; `{map}` is the raw map name, `{name}` its name;
-  - `server`: the server's line; `{server}` is the server's name, with the community's short name already put before it where needed;
-  - `players`: the line of the current players; `{players}` is the players on the server when the reminder is sent, `{capacity}` the server's capacity;
+  - `server`: the server's line; `{server}` is the server's name, with the community's short name already put before it where needed and the server's labels after it, each after " · ", such as "EXG Zombie Escape #5 · Hot";
+  - `players`: the line of the current players; `{players}` is the players who are not bots on the server when the reminder is sent, `{capacity}` the server's human capacity (its capacity less its bots, the denominator the website's server page shows);
   - `players_without_capacity`: the same line when the capacity is not known; `{players}` is the players.
 - A text uses only its own variables, and all of them: `players` has both `{players}` and `{capacity}`.
 - `en.json` has all six texts; a text another language leaves out shows in English. Traditional Chinese is converted from Simplified Chinese.
-- When FYS's "僵尸逃跑[ZE] 19" changes to ze_alien_shooter_gp1_3 and has 52 players of 64 when the reminder is sent, the Simplified Chinese reminder has the title "换图通知" and the lines "地图：ze_alien_shooter_gp1_3（孤胆枪手）", "服务器：FYS 僵尸逃跑[ZE] 19" and "当前人数：52 / 64"; in English they read "Map changed", "Map: ze_alien_shooter_gp1_3", "Server: FYS 僵尸逃跑[ZE] 19" and "Current players: 52 / 64".
+- When FYS's "僵尸逃跑[ZE] 19" changes to ze_alien_shooter_gp1_3 and has 52 players of 64 when the reminder is sent, the Simplified Chinese reminder has the title "换图通知" and the lines "地图：ze_alien_shooter_gp1_3（孤胆枪手）", "服务器：FYS 僵尸逃跑[ZE] 19" and "当前人数：52 / 64"; in English they read "Map changed", "Map: ze_alien_shooter_gp1_3", "Server: FYS 僵尸逃跑[ZE] 19" and "Current players: 52 / 64". When EXG's "PVE模式 #1" changes map with 31 players and 29 bots of 61, the server's line reads "Server: EXG PvE Mode #1" and the players' line "Current players: 31 / 32".
 - A merge does not take effect at once: the backend's next release takes the latest reminder texts of main, and until then reminders read as before.
 
 ### Checks

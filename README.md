@@ -172,6 +172,7 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
   - `players_without_capacity`：不知道容量时的人数一行，`{players}` 是人数。
 - 每句只用自己的变量，而且全部用上，例如 `players` 要同时有 `{players}` 与 `{capacity}`。
 - `en.json` 写全六句；其他语言缺哪句，那一句显示英语。繁体中文由简体转换，不单独写。
+- QQ 机器人的文字（以 `qq_` 开头：机器人在群里的回复、QQ 提醒的消息与卡片）只写简体中文，全部写在 `zh-CN.json` 里，其他语言不写；每句的用处与变量见 `schemas/reminder-texts.schema.json`。
 - 例如 FYS 的"僵尸逃跑[ZE] 19"换到 ze_alien_shooter_gp1_3，送出提醒时服务器上 52 人、容量 64：简体中文的提醒标题是"换图通知"，正文三行是"地图：ze_alien_shooter_gp1_3（孤胆枪手）""服务器：FYS 僵尸逃跑[ZE] 19""当前人数：52 / 64"。EXG 的"PVE模式 #1"换图时 31 名真人、29 个 Bot、容量 61：服务器一行是"服务器：EXG PVE模式 #1"，人数一行是"当前人数：31 / 32"。
 - 合并后不立即生效：后端下一次发布时取 main 上最新的提醒文字，在那之前提醒照旧。
 
@@ -272,6 +273,7 @@ When a map a player subscribes to is on and has enough players, the website remi
   - `players_without_capacity`: the same line when the capacity is not known; `{players}` is the players.
 - A text uses only its own variables, and all of them: `players` has both `{players}` and `{capacity}`.
 - `en.json` has all six texts; a text another language leaves out shows in English. Traditional Chinese is converted from Simplified Chinese.
+- The QQ bot's texts (the keys beginning with `qq_`: the bot's replies in the groups and the QQ reminder's message and card) are in Simplified Chinese only: `zh-CN.json` has every one of them and no other language has any. What each one is for and its variables are in `schemas/reminder-texts.schema.json`.
 - When FYS's "僵尸逃跑[ZE] 19" changes to ze_alien_shooter_gp1_3 and has 52 players of 64 when the reminder is sent, the Simplified Chinese reminder has the title "换图通知" and the lines "地图：ze_alien_shooter_gp1_3（孤胆枪手）", "服务器：FYS 僵尸逃跑[ZE] 19" and "当前人数：52 / 64"; in English they read "Map changed", "Map: ze_alien_shooter_gp1_3", "Server: FYS 僵尸逃跑[ZE] 19" and "Current players: 52 / 64". When EXG's "PVE模式 #1" changes map with 31 players and 29 bots of 61, the server's line reads "Server: EXG PvE Mode #1" and the players' line "Current players: 31 / 32".
 - A merge does not take effect at once: the backend's next release takes the latest reminder texts of main, and until then reminders read as before.
 

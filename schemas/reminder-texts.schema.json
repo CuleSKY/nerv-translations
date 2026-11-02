@@ -110,7 +110,7 @@
               "type": "string"
             }
           ],
-          "description": "QQ bot, zh-CN only: the reply when a member sent a valid code in an enabled group and is now bound to its account (also when he already was); no variables",
+          "description": "QQ bot, zh-CN only: the reply when a member sent a valid code in an enabled group and is now bound to its account (also when he already was); the group is now the account's notification group, the one group his reminders go to, which the reply says; no variables",
           "maxLength": 200,
           "minLength": 1,
           "type": "string"
@@ -265,7 +265,7 @@
               "type": "string"
             }
           ],
-          "description": "QQ bot, zh-CN only: the reply to a binding in a group the administrators have not enabled or have disabled (本群未启用); no variables",
+          "description": "QQ bot, zh-CN only: the reply to a binding, or to /本群提醒, in a group the administrators have not enabled or have disabled (本群未启用); no variables",
           "maxLength": 200,
           "minLength": 1,
           "type": "string"
@@ -310,6 +310,32 @@
             }
           ],
           "description": "QQ bot, zh-CN only: the reply to an unbinding by a member not bound in this group; no variables",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "qq_notify_here": {
+          "allOf": [
+            {
+              "description": "Uses no variable; every brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "QQ bot, zh-CN only: the reply to /本群提醒 from a member bound in this enabled group: it is now his account's notification group, the one group his reminders go to (also when it already was); no variables",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "qq_notify_not_bound": {
+          "allOf": [
+            {
+              "description": "Uses no variable; every brace is doubled",
+              "pattern": "^(?:[^{}]|\\{\\{|\\}\\})*$",
+              "type": "string"
+            }
+          ],
+          "description": "QQ bot, zh-CN only: the reply to /本群提醒 from a member not bound in this enabled group: he gets a binding code on the site or in the client and sends \"/绑定 \u003ccode\u003e\" here first; no variables",
           "maxLength": 200,
           "minLength": 1,
           "type": "string"
@@ -422,7 +448,7 @@
               "type": "string"
             }
           ],
-          "description": "QQ bot, zh-CN only: the fixed usage text, the reply to anything else said to the bot (old commands included): binding and unbinding only, subscriptions are managed on the site and in the client; no variables",
+          "description": "QQ bot, zh-CN only: the fixed usage text, the reply to anything else said to the bot (old commands included): binding, unbinding and /本群提醒, which makes the group his notification group, only; subscriptions are managed on the site and in the client; no variables",
           "maxLength": 200,
           "minLength": 1,
           "type": "string"

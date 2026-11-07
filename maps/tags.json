@@ -1,15 +1,15 @@
 {
   "tags": [
-    {"id": "ff", "exg": ["FF"], "names": {"zh-CN": "FF"}},
-    {"id": "luffaren", "exg": ["卤粉"], "names": {"zh-CN": "卤粉"}},
-    {"id": "obj", "exg": ["OBJ"], "names": {"zh-CN": "OBJ"}},
-    {"id": "casual", "exg": ["休闲"], "names": {"zh-CN": "休闲"}},
-    {"id": "progression", "exg": ["闯关"], "names": {"zh-CN": "闯关"}},
-    {"id": "laser", "exg": ["跳刀"], "names": {"zh-CN": "跳刀"}},
-    {"id": "event", "exg": ["活动"], "names": {"zh-CN": "活动"}},
-    {"id": "classic", "exg": ["经典"], "names": {"zh-CN": "经典"}},
-    {"id": "danmu", "exg": ["弹幕"], "names": {"zh-CN": "弹幕"}},
-    {"id": "voxel", "exg": ["方块"], "names": {"zh-CN": "方块"}},
-    {"id": "marathon", "exg": ["长征"], "names": {"zh-CN": "长征"}}
+    {"id": "ff", "exg": ["FF"], "names": {"zh-CN": "FF", "en": "FF", "ja": "FF", "ko": "FF"}},
+    {"id": "luffaren", "exg": ["卤粉"], "names": {"zh-CN": "卤粉", "en": "Luffaren", "ja": "Luffaren", "ko": "Luffaren"}},
+    {"id": "obj", "exg": ["OBJ"], "names": {"zh-CN": "OBJ", "en": "OBJ", "ja": "OBJ", "ko": "OBJ"}},
+    {"id": "casual", "exg": ["休闲"], "names": {"zh-CN": "休闲", "en": "Casual", "ja": "カジュアル", "ko": "캐주얼"}},
+    {"id": "progression", "exg": ["闯关"], "names": {"zh-CN": "闯关", "en": "Stages", "ja": "ステージ制", "ko": "스테이지"}},
+    {"id": "laser", "exg": ["跳刀"], "names": {"zh-CN": "跳刀", "en": "Laser", "ja": "レーザー", "ko": "레이저"}},
+    {"id": "event", "exg": ["活动"], "names": {"zh-CN": "活动", "en": "Event", "ja": "イベント", "ko": "이벤트"}},
+    {"id": "classic", "exg": ["经典"], "names": {"zh-CN": "经典", "en": "Classic", "ja": "クラシック", "ko": "클래식"}},
+    {"id": "danmu", "exg": ["弹幕"], "names": {"zh-CN": "弹幕", "en": "Bullet hell", "ja": "弾幕", "ko": "탄막"}},
+    {"id": "voxel", "exg": ["方块"], "names": {"zh-CN": "方块", "en": "Voxel", "ja": "ボクセル", "ko": "복셀"}},
+    {"id": "marathon", "exg": ["长征"], "names": {"zh-CN": "长征", "en": "Marathon", "ja": "マラソン", "ko": "마라톤"}}
   ]
 }

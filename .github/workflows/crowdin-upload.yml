@@ -29,6 +29,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # The commit before a push is needed to see which source texts changed.
+          fetch-depth: 0
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
@@ -44,6 +46,12 @@ jobs:
           upload_translations: false
           download_translations: false
         env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # A changed source text takes its Traditional Chinese approval away: the file option keeps translations as they are.
+      - name: Withdraw the Traditional Chinese approvals of changed sources
+        run: node tools/revoke-hant-approval.mjs "$BEFORE" --apply
+        env:
+          BEFORE: ${{ github.event.before }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
       # The prefill is written into this job's working copy only, over the approved exports, and nothing commits it.
       - name: Make the Traditional Chinese prefill

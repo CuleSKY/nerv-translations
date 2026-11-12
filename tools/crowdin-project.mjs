@@ -61,15 +61,17 @@ export function client({ token, apply, fetchImpl = fetch, log = console.log }) {
   const sent = [];
   async function request(method, path, body, headers = {}) {
     const mutating = method !== 'GET';
+    // A string or bytes body is a file for /storages and goes as it is; any other body is JSON.
+    const raw = typeof body === 'string' || body instanceof Uint8Array;
     if (mutating && !apply) {
       sent.push({ method, path, body });
-      log(`would send ${method} ${path}\n${JSON.stringify(redactHeaders(body), null, 2)}`);
+      log(raw ? `would send ${method} ${path} (${body.length} bytes)` : `would send ${method} ${path}\n${JSON.stringify(redactHeaders(body), null, 2)}`);
       return undefined;
     }
     const res = await fetchImpl(`${API}${path}`, {
       method,
-      headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers },
-      body: body ? JSON.stringify(body) : undefined,
+      headers: { Authorization: `Bearer ${token}`, ...(body && !raw ? { 'Content-Type': 'application/json' } : {}), ...headers },
+      body: body ? (raw ? body : JSON.stringify(body)) : undefined,
     });
     if (!res.ok) throw new Error(`${method} ${path}: ${res.status} ${await res.text()}`);
     if (mutating) sent.push({ method, path, body });
@@ -154,6 +156,36 @@ export async function applyContext(api, contexts) {
   }
 }
 
+/** The glossary's columns, as Crowdin's CSV import is told: header "Term [zh-CN],Description [zh-CN],Part of speech [zh-CN],Term [en],…". */
+export const GLOSSARY_SCHEME = {
+  'term_zh-CN': 0,
+  'description_zh-CN': 1,
+  'partOfSpeech_zh-CN': 2,
+  term_en: 3,
+  term_ja: 4,
+  term_ko: 5,
+  'term_zh-TW': 6,
+};
+
+/** The data lines of a glossary CSV by their zh-CN term (the text before the first comma), and its header line. */
+export function parseGlossary(csv) {
+  const [header, ...lines] = csv.split('\n').filter((l) => l.trim() !== '');
+  return { header, rows: lines.map((line) => ({ term: line.slice(0, line.indexOf(',')), line })) };
+}
+
+/** Imports the glossary rows the project's glossary does not have yet (matched by zh-CN term); changes nothing it has. */
+export async function applyGlossary(api, csv, glossaryId) {
+  const { header, rows } = parseGlossary(csv);
+  const have = new Set((await api.all(`/glossaries/${glossaryId}/terms?languageId=${SOURCE_LANGUAGE}`)).map((t) => t.text));
+  const missing = rows.filter((r) => !have.has(r.term));
+  if (!missing.length) return console.log('The glossary is as wanted.');
+  const file = `${[header, ...missing.map((r) => r.line)].join('\n')}\n`;
+  const storage = await api.request('POST', '/storages', file, { 'Content-Type': 'application/octet-stream', 'Crowdin-API-FileName': 'glossary.csv' });
+  if (!storage) return console.log(`${missing.length} term(s) would be imported.`);
+  const job = await api.request('POST', `/glossaries/${glossaryId}/imports`, { storageId: storage.data.id, scheme: GLOSSARY_SCHEME, firstLineContainsHeader: true });
+  console.log(`${missing.length} term(s) sent to import ${job.data.identifier}.`);
+}
+
 function loadContexts(root) {
   const contexts = new Map();
   for (const p of listFiles(root, 'i18n/context')) {
@@ -185,11 +217,14 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     await applyWebhook(api, process.env.GITHUB_DISPATCH_TOKEN);
   } else if (command === 'context' && token) {
     await applyContext(api, loadContexts(root));
-  } else if (command === 'webhook' || command === 'context') {
+  } else if (command === 'glossary' && token) {
+    const project = (await api.request('GET', `/projects/${PROJECT_ID}`)).data;
+    await applyGlossary(api, readFileSync(join(root, 'crowdin/glossary.csv'), 'utf8'), project.defaultGlossaryId);
+  } else if (command === 'webhook' || command === 'context' || command === 'glossary') {
     console.log(`CROWDIN_PERSONAL_TOKEN is not set: ${command} needs to read the project, so nothing is printed. Wanted:`);
-    console.log(JSON.stringify(command === 'webhook' ? { ...WANTED_WEBHOOK, headers: '(set from GITHUB_DISPATCH_TOKEN)' } : `${loadContexts(root).size} context file(s)`, null, 2));
+    console.log(JSON.stringify(command === 'webhook' ? { ...WANTED_WEBHOOK, headers: '(set from GITHUB_DISPATCH_TOKEN)' } : command === 'glossary' ? 'crowdin/glossary.csv' : `${loadContexts(root).size} context file(s)`, null, 2));
   } else {
-    console.error('usage: node tools/crowdin-project.mjs settings|webhook|context [--apply]');
+    console.error('usage: node tools/crowdin-project.mjs settings|webhook|context|glossary [--apply]');
     process.exit(2);
   }
 }

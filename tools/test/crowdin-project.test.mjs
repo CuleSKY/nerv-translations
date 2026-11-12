@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { applyContext, applySettings, applyWebhook, client, languageProblems, redactHeaders, PROJECT_ID, settingsPatch, WANTED_SETTINGS, WANTED_WEBHOOK } from '../crowdin-project.mjs';
+import { applyContext, applyGlossary, applySettings, applyWebhook, client, languageProblems, redactHeaders, PROJECT_ID, settingsPatch, WANTED_SETTINGS, WANTED_WEBHOOK } from '../crowdin-project.mjs';
 
 const project = JSON.parse(readFileSync(fileURLToPath(new URL('./fixtures/project.json', import.meta.url)), 'utf8'));
 const silent = () => {};
@@ -13,7 +13,7 @@ function fake(routes) {
   const requests = [];
   const fetchImpl = async (url, init) => {
     const path = url.replace('https://api.crowdin.com/api/v2', '');
-    requests.push({ method: init.method, path, body: init.body ? JSON.parse(init.body) : undefined, headers: init.headers });
+    requests.push({ method: init.method, path, body: init.body ? (path === '/storages' ? init.body : JSON.parse(init.body)) : undefined, headers: init.headers });
     const key = `${init.method} ${path}`;
     if (!(key in routes)) return { ok: false, status: 404, text: async () => `no route ${key}` };
     return { ok: true, status: 200, json: async () => routes[key] };
@@ -105,4 +105,23 @@ test('a dry run never prints the value of a header', async () => {
   assert.match(printed.join('\n'), /would send POST/);
   assert.doesNotMatch(printed.join('\n'), /dispatch-token-value/);
   assert.deepEqual(redactHeaders({ a: 1 }), { a: 1 });
+});
+
+test('the glossary imports only the terms the project lacks, and says so before sending', async () => {
+  const csv = 'Term [zh-CN],Description [zh-CN],Part of speech [zh-CN],Term [en],Term [ja],Term [ko],Term [zh-TW]\n地图,Game map,noun,Map,マップ,맵,地圖\n设置,Settings,noun,Settings,設定,설정,設定\n';
+  const terms = `GET /glossaries/9/terms?languageId=zh-CN&limit=500&offset=0`;
+  let { fetchImpl, requests } = fake({ [terms]: { data: [{ data: { text: '地图' } }] }, 'POST /storages': { data: { id: 4 } }, 'POST /glossaries/9/imports': { data: { identifier: 'abc' } } });
+  await applyGlossary(client({ token: 't', apply: true, fetchImpl, log: silent }), csv, 9);
+  const uploaded = requests.find((r) => r.path === '/storages');
+  assert.equal(uploaded.headers['Crowdin-API-FileName'], 'glossary.csv');
+  assert.equal(requests.find((r) => r.path === '/glossaries/9/imports').body.storageId, 4);
+  assert.equal(requests.find((r) => r.path === '/glossaries/9/imports').body.firstLineContainsHeader, true);
+
+  ({ fetchImpl, requests } = fake({ [terms]: { data: [{ data: { text: '地图' } }, { data: { text: '设置' } }] } }));
+  await applyGlossary(client({ token: 't', apply: true, fetchImpl, log: silent }), csv, 9);
+  assert.deepEqual(requests.map((r) => r.method), ['GET'], 'a complete glossary sends nothing');
+
+  ({ fetchImpl, requests } = fake({ [terms]: { data: [] } }));
+  await applyGlossary(client({ token: 't', apply: false, fetchImpl, log: silent }), csv, 9);
+  assert.deepEqual(requests.map((r) => r.method), ['GET'], 'a dry run reads only');
 });

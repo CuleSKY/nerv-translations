@@ -194,7 +194,7 @@ ZE 地图的标签来自 EXG。词典把 EXG 的标签词换成通用的标签�
 - `i18n/<en|ja|ko|zh-TW>/`：译文，路径与原文相同，只由翻译项目写入。**不要在 PR 里改它们**：检查会拒绝，请到翻译项目里改。
 - 繁体中文先由 OpenCC 预填：界面文字用台湾用词（cn→twp），名称只换字形，再套用 `i18n/zh-CN/hant-phrases.json` 里的词组修正（`crowdin/hant-phrases.seed.json` 是修正的写法）。预填只上传，不进仓库；译文由校对者批准后才导出。
 - `crowdin/prompt.md`、`crowdin/glossary.csv`、`crowdin/style-guide-<语言>.md`：给 AI 的提示词、术语表与四种语言的风格指南。
-- 脚本：`npm ci` 后用 `npm test` 运行测试；`tools/crowdin-project.mjs settings|webhook|context` 默认只打印要发送的请求，加 `--apply` 才真的发送，需要环境变量 `CROWDIN_PERSONAL_TOKEN`（webhook 另需 `GITHUB_DISPATCH_TOKEN`）。
+- 脚本：`npm ci` 后用 `npm test` 运行测试；`tools/crowdin-project.mjs settings|webhook|context|glossary` 默认只打印要发送的请求，加 `--apply` 才真的发送，需要环境变量 `CROWDIN_PERSONAL_TOKEN`（webhook 另需 `GITHUB_DISPATCH_TOKEN`）。`tools/revoke-hant-approval.mjs` 在简体原文变化时撤销对应繁体译文的批准（上传工作流里自动运行）。
 - 工作流：`translations.yml` 检查 PR（译文文件只允许翻译项目改，变量与 ICU 写法与原文一致）；`crowdin-upload.yml` 在原文变化后上传原文与繁体预填；`crowdin-download.yml` 在批准译文的 webhook 到达时以及每天一次，导出批准的译文并开 PR。需要仓库密钥 `CROWDIN_PERSONAL_TOKEN` 与 `L10N_PR_TOKEN`（用 `GITHUB_TOKEN` 开的 PR 不会触发检查）。
 - 过渡期：`servers/*.json` 与 `reminders/*.json` 里已有的英语、日语、韩语写法继续有效，仍可在 PR 里改，之后会搬进 `i18n/`。
 
@@ -311,6 +311,6 @@ English, Japanese, Korean and Traditional Chinese are translated and reviewed in
 - `i18n/<en|ja|ko|zh-TW>/`: the translations, at the same paths as the source, written only by the translation project. **Do not change them in a pull request**: the check rejects it; change them in the translation project.
 - Traditional Chinese is prefilled by OpenCC: interface text in Taiwan usage (cn→twp), names by character form only, then the phrase corrections of `i18n/zh-CN/hant-phrases.json` (`crowdin/hant-phrases.seed.json` holds the corrected forms). The prefill is uploaded and never committed; a translation is exported only once a proofreader approves it.
 - `crowdin/prompt.md`, `crowdin/glossary.csv` and `crowdin/style-guide-<language>.md`: the AI prompt, the glossary and the four style guides.
-- Scripts: after `npm ci`, `npm test` runs the tests. `tools/crowdin-project.mjs settings|webhook|context` only prints the requests it would send, and sends them with `--apply`; it needs `CROWDIN_PERSONAL_TOKEN` (the webhook also `GITHUB_DISPATCH_TOKEN`).
+- Scripts: after `npm ci`, `npm test` runs the tests. `tools/crowdin-project.mjs settings|webhook|context|glossary` only prints the requests it would send, and sends them with `--apply`; it needs `CROWDIN_PERSONAL_TOKEN` (the webhook also `GITHUB_DISPATCH_TOKEN`). `tools/revoke-hant-approval.mjs` withdraws the approval of the Traditional Chinese translation of a source text that changed (the upload workflow runs it).
 - Workflows: `translations.yml` checks pull requests (only the translation project may change translation files; variables and ICU syntax match the source); `crowdin-upload.yml` uploads the source and the Traditional Chinese prefill after the source changes; `crowdin-download.yml` exports the approved translations and opens a pull request when the approval webhook arrives and once a day. It needs the repository secrets `CROWDIN_PERSONAL_TOKEN` and `L10N_PR_TOKEN` (a pull request opened with `GITHUB_TOKEN` starts no checks).
 - For now the English, Japanese and Korean names already inside `servers/*.json` and `reminders/*.json` stay valid and can still be changed in a pull request; they move to `i18n/` later.

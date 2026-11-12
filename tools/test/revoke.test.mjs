@@ -36,7 +36,7 @@ function fake() {
     requests.push(`${init.method} ${path}`);
     if (init.method === 'DELETE') return { ok: true, status: 204 };
     if (path.startsWith(`/projects/${PROJECT_ID}/files`)) return page([{ id: 5, path: '/i18n/zh-CN/servers/zed.json' }]);
-    if (path.startsWith(`/projects/${PROJECT_ID}/strings`)) return page([{ id: 11, identifier: 'zed.r1' }, { id: 12, identifier: 'zed.r2' }]);
+    if (path.startsWith(`/projects/${PROJECT_ID}/strings`)) return page([{ id: 11, identifier: '"zed.r1"' }, { id: 12, identifier: '"zed.r2"' }]);
     if (path.startsWith(`/projects/${PROJECT_ID}/approvals`)) return page([{ id: 91, stringId: 11 }, { id: 92, stringId: 12 }]);
     return { ok: false, status: 404, text: async () => `no route ${path}` };
   };

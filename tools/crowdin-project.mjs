@@ -56,6 +56,9 @@ export function redactHeaders(body) {
   return { ...body, headers: Object.fromEntries(Object.keys(body.headers).map((name) => [name, '(hidden)'])) };
 }
 
+/** The JSON key of a Crowdin string: for a key with a dot in it ("zed.r1") the parser writes the identifier in quotes. */
+export const keyOf = (identifier) => identifier.replace(/^"(.*)"$/s, '$1');
+
 /** A client that sends nothing but reads unless `apply`. @param {typeof fetch} [fetchImpl] */
 export function client({ token, apply, fetchImpl = fetch, log = console.log }) {
   const sent = [];
@@ -147,7 +150,7 @@ export async function applyContext(api, contexts) {
     const strings = await api.all(`/projects/${PROJECT_ID}/strings?fileId=${file.id}`);
     let changed = 0;
     for (const s of strings) {
-      const wanted = byKey[s.identifier];
+      const wanted = byKey[keyOf(s.identifier)];
       if (wanted === undefined || (s.context ?? '') === wanted) continue;
       changed++;
       await api.request('PATCH', `/projects/${PROJECT_ID}/strings/${s.id}`, [{ op: 'replace', path: '/context', value: wanted }]);

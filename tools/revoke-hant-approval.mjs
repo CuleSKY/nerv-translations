@@ -12,7 +12,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { client, PROJECT_ID } from './crowdin-project.mjs';
+import { client, keyOf, PROJECT_ID } from './crowdin-project.mjs';
 import { groupOf, relativeOf, SOURCE_LANGUAGE } from './lib/groups.mjs';
 import { listFiles } from './lib/repo.mjs';
 
@@ -41,7 +41,7 @@ export async function revokeApprovals(api, changes, log = console.log) {
       log(`${path}: not in the project`);
       continue;
     }
-    const ids = new Set((await api.all(`/projects/${PROJECT_ID}/strings?fileId=${file.id}`)).filter((s) => keys.includes(s.identifier)).map((s) => s.id));
+    const ids = new Set((await api.all(`/projects/${PROJECT_ID}/strings?fileId=${file.id}`)).filter((s) => keys.includes(keyOf(s.identifier))).map((s) => s.id));
     const approvals = (await api.all(`/projects/${PROJECT_ID}/approvals?fileId=${file.id}&languageId=${TARGET}`)).filter((a) => ids.has(a.stringId));
     for (const a of approvals) await api.request('DELETE', `/projects/${PROJECT_ID}/approvals/${a.id}`);
     log(`${path}: ${keys.length} changed, ${approvals.length} approval(s) withdrawn`);

@@ -87,6 +87,7 @@ test('context is set only where it differs', async () => {
       data: [
         { data: { id: 1, identifier: 'title', context: 'Text “title” of the map-change reminder' } },
         { data: { id: 2, identifier: 'players', context: null } },
+        { data: { id: 3, identifier: '"a.b"', context: ' -> a.b' } },
       ],
     },
     [`PATCH /projects/${PROJECT_ID}/strings/2`]: {},

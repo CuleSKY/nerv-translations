@@ -43,7 +43,11 @@ export const WANTED_WEBHOOK = {
   // GitHub needs one JSON object with event_type; a batched webhook would send a list of events instead.
   batchingEnabled: false,
   isActive: true,
-  payload: { event_type: 'crowdin-translations-approved' },
+  // Crowdin takes a custom payload per event: the keys are event names, each holding the body sent for that event.
+  payload: {
+    'suggestion.approved': { event_type: 'crowdin-translations-approved' },
+    'suggestion.disapproved': { event_type: 'crowdin-translations-approved' },
+  },
 };
 
 /** A copy of a request body with the values of its `headers` hidden: headers carry tokens, and a dry run is printed. */

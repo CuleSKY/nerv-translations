@@ -67,7 +67,10 @@ test('the webhook is created once, with the dispatch token in its headers, and o
   await applyWebhook(client({ token: 't', apply: true, fetchImpl, log: silent }), 'dispatch-token');
   const created = requests.find((r) => r.method === 'POST').body;
   assert.equal(created.url, 'https://api.github.com/repos/CuleSKY/nerv-translations/dispatches');
-  assert.deepEqual(created.payload, { event_type: 'crowdin-translations-approved' });
+  assert.deepEqual(created.payload, {
+    'suggestion.approved': { event_type: 'crowdin-translations-approved' },
+    'suggestion.disapproved': { event_type: 'crowdin-translations-approved' },
+  });
   assert.equal(created.batchingEnabled, false);
   assert.equal(created.headers.Authorization, 'Bearer dispatch-token');
   await assert.rejects(applyWebhook(client({ token: 't', apply: true, fetchImpl, log: silent }), undefined), /GITHUB_DISPATCH_TOKEN/);

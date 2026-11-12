@@ -1,0 +1,8 @@
+{
+  "title": "Text “title” of the map-change reminder",
+  "map": "Text “map” of the map-change reminder",
+  "map_with_name": "Text “map_with_name” of the map-change reminder",
+  "server": "Text “server” of the map-change reminder",
+  "players": "Text “players” of the map-change reminder",
+  "players_without_capacity": "Text “players_without_capacity” of the map-change reminder"
+}

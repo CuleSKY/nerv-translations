@@ -1,0 +1,11 @@
+{
+  "exg.r1": "Server name pattern: 僵尸逃跑ZE 装备活动#{n}",
+  "exg.r2": "Server name pattern: 僵尸逃跑ZE 装备#{n} 无宵禁",
+  "exg.r3": "Server name pattern: 僵尸逃跑ZE 装备#{n}",
+  "exg.r4": "Server name pattern: 僵尸逃跑ZE #{n}",
+  "exg.r5": "Server name pattern: PVE模式 #{n}",
+  "exg.r6": "Server name pattern: 躲猫猫 #{n}",
+  "exg.r7": "Server name pattern: 娱乐闯关MG #{n}",
+  "exg.r8": "Server name pattern: 滑翔SURF #{n}",
+  "exg.r9": "Server name pattern: 挂机大厅 #{n}"
+}

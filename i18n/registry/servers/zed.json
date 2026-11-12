@@ -1,0 +1,73 @@
+{
+  "next": 18,
+  "entries": [
+    {
+      "id": "zed.r1",
+      "match": "【僵尸乐园】 CS2 ZE #{n}"
+    },
+    {
+      "id": "zed.r2",
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 简单 #{n}"
+    },
+    {
+      "id": "zed.r3",
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 中等 #{n}"
+    },
+    {
+      "id": "zed.r4",
+      "match": "【僵尸乐园】 CS2 攀岩 Kz 困难 #{n}"
+    },
+    {
+      "id": "zed.r5",
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 简单 #{n}"
+    },
+    {
+      "id": "zed.r6",
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 中等 #{n}"
+    },
+    {
+      "id": "zed.r7",
+      "match": "【僵尸乐园】 CS2 连跳 Bhop 困难 #{n}"
+    },
+    {
+      "id": "zed.r8",
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 简单 #{n}"
+    },
+    {
+      "id": "zed.r9",
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 中等 #{n}"
+    },
+    {
+      "id": "zed.r10",
+      "match": "【僵尸乐园】 CS2 滑翔 Surf 困难 #{n}"
+    },
+    {
+      "id": "zed.r11",
+      "match": "【僵尸乐园】 CS2 娱乐闯关 简单 #{n}"
+    },
+    {
+      "id": "zed.r12",
+      "match": "【僵尸乐园】 CS2 娱乐闯关 中等 #{n}"
+    },
+    {
+      "id": "zed.r13",
+      "match": "【僵尸乐园】 CS2 娱乐闯关 困难 #{n}"
+    },
+    {
+      "id": "zed.r14",
+      "match": "【僵尸乐园】 娱乐对抗 #{n} test"
+    },
+    {
+      "id": "zed.r15",
+      "match": "【僵尸乐园】 娱乐对抗 #{n}"
+    },
+    {
+      "id": "zed.r16",
+      "match": "【僵尸乐园】 娱乐混战 #{n}"
+    },
+    {
+      "id": "zed.r17",
+      "match": "【僵尸乐园】 幻想乡大厅"
+    }
+  ]
+}

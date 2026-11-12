@@ -1,0 +1,17 @@
+{
+  "next": 4,
+  "entries": [
+    {
+      "id": "kaish.r1",
+      "match": "「开水服」ZE训练 #{n}"
+    },
+    {
+      "id": "kaish.r2",
+      "match": "「开水服」ZE跑图 #{n}"
+    },
+    {
+      "id": "kaish.r3",
+      "match": "「开水服」KZ全球 #{n}"
+    }
+  ]
+}

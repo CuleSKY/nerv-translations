@@ -1,0 +1,21 @@
+{
+  "next": 5,
+  "entries": [
+    {
+      "id": "n4a.r1",
+      "match": "CSDM::[Net4All.RU]~Пушки + Лазеры~[CS 2]"
+    },
+    {
+      "id": "n4a.r2",
+      "match": "[GUNGAME] CSDM::[Net4All.RU]~Пушки + Лазеры~[CS:GO]"
+    },
+    {
+      "id": "n4a.r3",
+      "match": "Zombie::[Net4ALL.RU]::FastDL|SSD [CS:GO]"
+    },
+    {
+      "id": "n4a.r4",
+      "match": "Zombie::[Net4ALL.RU]::Workshop|SSD [CS 2]"
+    }
+  ]
+}

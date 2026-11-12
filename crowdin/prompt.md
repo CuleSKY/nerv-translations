@@ -14,7 +14,7 @@ Rules for every string:
 2. Keep ICU syntax (`{count, plural, one {…} other {…}}`, `<b>…</b>`) intact: translate only the text inside the clauses, and write every plural category the target language has.
 3. Do not add, drop or reorder information. Do not explain, do not add punctuation or quotation marks that the source does not have, do not add a trailing full stop to a label.
 4. Write only the translation, nothing else.
-5. These stay in Latin letters in every language, exactly as the glossary writes them: community names and abbreviations (EXG, ZombiEden, FYS, UB, GFL, N4A, KepCS), game and mode abbreviations (CS2, CSGO, ZE, KZ, Bhop, TTT, PvE), Tier, TP, PRO, NUB, SSR/R/N, CP.
+5. These stay in Latin letters in every language, exactly as the glossary writes them: community names and abbreviations (EXG, ZombiEden, FYS, UB, GFL, N4A, KepCS), game and mode abbreviations (CS2, CSGO, ZE, KZ, Bhop, TTT, PvE), TP, PRO, NUB, SSR/R/N, CP, and Tier (except in Korean, where the existing names write 티어).
 6. Do not translate player names, server addresses or text a player or a community wrote.
 
 By kind of string (the label on the string says which):

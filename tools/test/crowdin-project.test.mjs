@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { applyContext, applySettings, applyWebhook, client, languageProblems, PROJECT_ID, settingsPatch, WANTED_SETTINGS, WANTED_WEBHOOK } from '../crowdin-project.mjs';
+import { applyContext, applySettings, applyWebhook, client, languageProblems, redactHeaders, PROJECT_ID, settingsPatch, WANTED_SETTINGS, WANTED_WEBHOOK } from '../crowdin-project.mjs';
 
 const project = JSON.parse(readFileSync(fileURLToPath(new URL('./fixtures/project.json', import.meta.url)), 'utf8'));
 const silent = () => {};
@@ -93,4 +93,13 @@ test('context is set only where it differs', async () => {
   const patches = requests.filter((r) => r.method === 'PATCH');
   assert.equal(patches.length, 1);
   assert.deepEqual(patches[0].body, [{ op: 'replace', path: '/context', value: 'Text “players” of the map-change reminder' }]);
+});
+
+test('a dry run never prints the value of a header', async () => {
+  const printed = [];
+  const { fetchImpl } = fake({ ['GET /projects/' + PROJECT_ID + '/webhooks?limit=500&offset=0']: { data: [] } });
+  await applyWebhook(client({ token: 't', apply: false, fetchImpl, log: (m) => printed.push(m) }), 'dispatch-token-value');
+  assert.match(printed.join('\n'), /would send POST/);
+  assert.doesNotMatch(printed.join('\n'), /dispatch-token-value/);
+  assert.deepEqual(redactHeaders({ a: 1 }), { a: 1 });
 });

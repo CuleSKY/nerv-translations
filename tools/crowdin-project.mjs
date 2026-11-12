@@ -46,6 +46,12 @@ export const WANTED_WEBHOOK = {
   payload: { event_type: 'crowdin-translations-approved' },
 };
 
+/** A copy of a request body with the values of its `headers` hidden: headers carry tokens, and a dry run is printed. */
+export function redactHeaders(body) {
+  if (!body || Array.isArray(body) || typeof body.headers !== 'object' || body.headers === null) return body;
+  return { ...body, headers: Object.fromEntries(Object.keys(body.headers).map((name) => [name, '(hidden)'])) };
+}
+
 /** A client that sends nothing but reads unless `apply`. @param {typeof fetch} [fetchImpl] */
 export function client({ token, apply, fetchImpl = fetch, log = console.log }) {
   const sent = [];
@@ -53,7 +59,7 @@ export function client({ token, apply, fetchImpl = fetch, log = console.log }) {
     const mutating = method !== 'GET';
     if (mutating && !apply) {
       sent.push({ method, path, body });
-      log(`would send ${method} ${path}\n${JSON.stringify(body, null, 2)}`);
+      log(`would send ${method} ${path}\n${JSON.stringify(redactHeaders(body), null, 2)}`);
       return undefined;
     }
     const res = await fetchImpl(`${API}${path}`, {

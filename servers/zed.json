@@ -4,7 +4,7 @@
       "match": "【僵尸乐园】 CS2 ZE #{n}",
       "names": {
         "en": "ZombiEden CS2 ZE #{n}",
-        "zh-CN": "僵尸乐园 CS2 ZE #{n}",
+        "zh-CN": "僵尸乐园 CS2 ZE 测试 #{n}",
         "ja": "ZombiEden CS2 ZE #{n}",
         "ko": "ZombiEden CS2 ZE #{n}"
       }

@@ -1,0 +1,45 @@
+{
+  "next": 11,
+  "entries": [
+    {
+      "id": "ub.r1",
+      "match": "UB社区 CS2 僵尸逃跑 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r2",
+      "match": "UB社区 僵尸逃跑 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r3",
+      "match": "UB社区 生化模式3:英雄 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r4",
+      "match": "UB社区 CS2 攀岩竞速 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r5",
+      "match": "UB社区 攀岩竞速 #{n} GOKZ {tiers} Q群 {qq}"
+    },
+    {
+      "id": "ub.r6",
+      "match": "UB社区 CS2 滑翔竞速 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r7",
+      "match": "UB社区 CS2 女装混战 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r8",
+      "match": "UB社区 娱乐混战 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r9",
+      "match": "UB社区 休闲对抗 #{n} Q群 {qq}"
+    },
+    {
+      "id": "ub.r10",
+      "match": "UB社区 休闲大厅"
+    }
+  ]
+}

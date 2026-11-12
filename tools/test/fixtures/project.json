@@ -1,0 +1,26 @@
+{
+  "id": 942667,
+  "type": "file-based",
+  "sourceLanguageId": "zh-CN",
+  "targetLanguageIds": ["ja", "ko", "zh-TW", "en"],
+  "name": "NERV CS2ZE Translation",
+  "identifier": "nerv-cs2ze-translation",
+  "translateDuplicates": 0,
+  "autoSubstitution": true,
+  "exportTranslatedOnly": false,
+  "skipUntranslatedStrings": false,
+  "exportApprovedOnly": false,
+  "qaCheckIsActive": true,
+  "qaCheckCategories": {
+    "empty": true, "size": true, "tags": true, "spaces": true, "variables": true, "punctuation": true,
+    "symbolRegister": true, "specialSymbols": true, "wrongTranslation": true, "spellcheck": true, "icu": true,
+    "terms": false, "duplicate": true, "ftl": true, "android": true, "numbers": true, "ai": false, "outdated": false,
+    "mdx": true, "unifiedPlaceholders": true
+  },
+  "qaChecksIgnorableCategories": {
+    "empty": true, "size": false, "tags": true, "spaces": true, "variables": true, "punctuation": true,
+    "symbolRegister": true, "specialSymbols": true, "wrongTranslation": true, "spellcheck": true, "icu": false,
+    "terms": true, "duplicate": false, "ftl": false, "android": false, "numbers": true, "ai": true, "outdated": true,
+    "mdx": false, "unifiedPlaceholders": false
+  }
+}

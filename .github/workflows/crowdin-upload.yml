@@ -1,0 +1,75 @@
+# Sends the Simplified Chinese sources to the translation project when they change on main, and the Traditional Chinese
+# prefill with them: OpenCC's conversion of every source text, as unapproved translations for the proofreaders.
+# Needs the repository secret CROWDIN_PERSONAL_TOKEN.
+name: crowdin-upload
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "i18n/zh-CN/**"
+      - "i18n/context/**"
+      - "crowdin.yml"
+      - "crowdin/hant-phrases.seed.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One run at a time against the project; a later run waits instead of replacing one that is uploading.
+concurrency:
+  group: crowdin
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          # The commit before a push is needed to see which source texts changed.
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - name: Install the tools
+        run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+      - name: Check that the generated sources are up to date
+        run: node tools/sync-sources.mjs --check
+      - name: Upload the sources
+        uses: crowdin/github-action@959dc74ac104447731cba99a016f85d0ae719788 # v3.5.0
+        with:
+          config: crowdin.yml
+          upload_sources: true
+          upload_translations: false
+          download_translations: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # A changed source text takes its Traditional Chinese approval away: the file option keeps translations as they are.
+      - name: Withdraw the Traditional Chinese approvals of changed sources
+        run: node tools/revoke-hant-approval.mjs "$BEFORE" --apply
+        env:
+          BEFORE: ${{ github.event.before }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # The prefill is written into this job's working copy only, over the approved exports, and nothing commits it.
+      - name: Make the Traditional Chinese prefill
+        run: node tools/prefill-zh-tw.mjs
+      - name: Upload the prefill as unapproved translations
+        uses: crowdin/github-action@959dc74ac104447731cba99a016f85d0ae719788 # v3.5.0
+        with:
+          config: crowdin.yml
+          upload_sources: false
+          upload_translations: true
+          upload_language: zh-TW
+          auto_approve_imported: false
+          import_eq_suggestions: false
+          download_translations: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # The context of the strings is set through the API after they exist.
+      - name: Set the strings' context
+        run: node tools/crowdin-project.mjs context --apply
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

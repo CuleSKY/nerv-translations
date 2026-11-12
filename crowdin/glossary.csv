@@ -1,0 +1,45 @@
+Term [zh-CN],Description [zh-CN],Part of speech [zh-CN],Term [en],Term [ja],Term [ko],Term [zh-TW]
+僵尸逃跑,ZE game mode,noun,Zombie Escape,ゾンビエスケープ,좀비 탈출,殭屍逃跑
+娱乐闯关,Mini-games game mode,noun,Mini-Games,ミニゲーム,미니게임,娛樂闖關
+滑翔,Surf game mode,noun,Surf,サーフ,서핑,滑翔
+连跳,Bhop game mode,noun,Bhop,Bhop,Bhop,連跳
+攀岩,KZ game mode; the name shows as KZ,noun,KZ,KZ,KZ,攀岩
+魔兽混战,Beast Deathmatch game mode,noun,Beast Deathmatch,ビーストデスマッチ,비스트 데스매치,魔獸混戰
+匪镇谍影,Trouble in Terrorist Town game mode,noun,Trouble in Terrorist Town,TTT,TTT,匪鎮諜影
+躲猫猫,Prop Hunt game mode,noun,Prop Hunt,かくれんぼ,숨바꼭질,躲貓貓
+死斗,Deathmatch,noun,Deathmatch,デスマッチ,데스매치,死鬥
+混战,Deathmatch in casual modes,noun,Deathmatch,デスマッチ,데스매치,混戰
+对抗,Versus in casual modes,noun,Versus,対戦,대전,對抗
+休闲,Casual (servers and map tag),adjective,Casual,カジュアル,캐주얼,休閒
+大厅,Lobby server,noun,Lobby,ロビー,로비,大廳
+挂机大厅,AFK lobby server,noun,AFK Lobby,放置ロビー,잠수 로비,掛機大廳
+简单,Difficulty tier of a server,adjective,Easy,初級,초급,簡單
+中等,Difficulty tier of a server,adjective,Medium,中級,중급,中等
+困难,Difficulty tier of a server,adjective,Hard,上級,고급,困難
+新手,Beginner level of a server,noun,Beginner,初心者,초보자,新手
+无宵禁,A server with no curfew,noun,No Curfew,夜間制限なし,통금 없음,無宵禁
+装备,Server label: gear,noun,Gear,装備,장비,裝備
+热门,Server label: hot,adjective,Hot,人気,인기,熱門
+经典,ZE map tag: classic,adjective,Classic,クラシック,클래식,經典
+闯关,ZE map tag: stage-based maps,noun,Stages,ステージ制,스테이지,闖關
+长征,ZE map tag: marathon,noun,Marathon,マラソン,마라톤,長征
+跳刀,ZE map tag: laser jumps,noun,Laser,レーザー,레이저,跳刀
+弹幕,ZE map tag: bullet hell,noun,Bullet hell,弾幕,탄막,彈幕
+方块,ZE map tag: voxel,noun,Voxel,ボクセル,복셀,方塊
+卤粉,ZE map tag: maps by Luffaren,noun,Luffaren,Luffaren,Luffaren,滷粉
+活动,ZE map tag and server label: event,noun,Event,イベント,이벤트,活動
+服务器,"Game server; interface text only. In names Traditional Chinese keeps 服務器",noun,Server,サーバー,서버,伺服器
+地图,Game map,noun,Map,マップ,맵,地圖
+账户,User account,noun,Account,アカウント,계정,帳戶
+登录,Sign in,verb,Sign in,ログイン,로그인,登入
+退出登录,Sign out,verb,Sign out,ログアウト,로그아웃,登出
+设置,Settings,noun,Settings,設定,설정,設定
+语言,Language,noun,Language,言語,언어,語言
+搜索,Search,noun,Search,検索,검색,搜尋
+收藏,Favourites (a saved list),noun,Favourites,お気に入り,즐겨찾기,收藏
+订阅,Subscriptions to maps,noun,Subscriptions,購読,구독,訂閱
+提醒,Map-change reminders,noun,Reminders,通知,알림,提醒
+EXG,Community name; never translated,noun,EXG,EXG,EXG,EXG
+ZE,Zombie Escape abbreviation; never translated,noun,ZE,ZE,ZE,ZE
+KZ,Climb mode; never translated,noun,KZ,KZ,KZ,KZ
+Tier,Map difficulty level; Korean communities write 티어,noun,Tier,Tier,티어,Tier

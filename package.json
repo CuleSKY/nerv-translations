@@ -1,0 +1,22 @@
+{
+  "name": "nerv-translations-tools",
+  "private": true,
+  "type": "module",
+  "description": "Tools of the translation repository: source generation, prefill, checks and the translation project's settings.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "sync": "node tools/sync-sources.mjs",
+    "sync:check": "node tools/sync-sources.mjs --check",
+    "check:format": "node tools/check-format.mjs",
+    "test": "node --test \"tools/test/*.test.mjs\""
+  },
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "3.5.22",
+    "opencc-js": "1.4.2"
+  },
+  "devDependencies": {
+    "yaml": "2.9.1"
+  }
+}

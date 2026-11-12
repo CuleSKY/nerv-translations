@@ -1,0 +1,49 @@
+# Checks of the translation files on every pull request: translations are made in the translation project, the
+# generated sources match the files they come from, and every translation keeps its source's variables.
+# The guard and the format check fail the pull request; GitHub's rules for the branch decide whether that stops a merge.
+name: translations
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      # The translation project's pull request is the one from this repository's own branch the download workflow
+      # pushes to; a fork cannot send a pull request that counts as it.
+      - name: Check who changes the translations
+        env:
+          BASE: ${{ github.event.pull_request.base.ref }}
+          FROM_TRANSLATION_PROJECT: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'l10n_crowdin_translations' }}
+        run: git diff --name-only --no-renames "origin/$BASE...HEAD" | node tools/guard.mjs "--crowdin-pr=$FROM_TRANSLATION_PROJECT"
+
+  format:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - name: Install the tools
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check that the generated sources are up to date
+        run: node tools/sync-sources.mjs --check
+      - name: Check the variables and ICU syntax of the translations
+        run: node tools/check-format.mjs
+      - name: Run the tests of the tools
+        run: node --test "tools/test/*.test.mjs"

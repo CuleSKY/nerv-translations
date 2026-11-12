@@ -1,0 +1,59 @@
+# Downloads the approved translations from the translation project and opens a pull request with them: when the project
+# says a translation was approved (its webhook starts this workflow through repository_dispatch), and once a day in case
+# a webhook was lost. Only approved translations are exported, and a string no one translated is left out.
+# Needs the repository secrets CROWDIN_PERSONAL_TOKEN and L10N_PR_TOKEN. A pull request opened with the workflow's own
+# token starts no checks, so L10N_PR_TOKEN is a token of the repository's maintainer or a GitHub App's, with write access
+# to contents and pull requests.
+name: crowdin-download
+
+on:
+  repository_dispatch:
+    types: [crowdin-translations-approved]
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: crowdin
+  cancel-in-progress: false
+
+jobs:
+  download:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Download the approved translations and open the pull request
+        id: crowdin
+        uses: crowdin/github-action@959dc74ac104447731cba99a016f85d0ae719788 # v3.5.0
+        with:
+          config: crowdin.yml
+          upload_sources: false
+          download_translations: true
+          export_only_approved: true
+          skip_untranslated_strings: true
+          push_translations: true
+          create_pull_request: true
+          localization_branch_name: l10n_crowdin_translations
+          pull_request_base_branch_name: main
+          pull_request_title: Update the approved translations
+          pull_request_body: The translations approved in the translation project since the last pull request.
+          commit_message: Update the approved translations
+          github_user_name: Crowdin
+          github_user_email: support+bot@crowdin.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.L10N_PR_TOKEN }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      # Off until the maintainer allows auto-merge for the repository, makes the checks of translations.yml required,
+      # and sets the variable AUTO_MERGE_TRANSLATIONS to true (Settings → Secrets and variables → Actions → Variables).
+      - name: Merge the pull request when its checks pass
+        if: ${{ vars.AUTO_MERGE_TRANSLATIONS == 'true' && steps.crowdin.outputs.pull_request_url != '' }}
+        run: gh pr merge --auto --squash "$PULL_REQUEST"
+        env:
+          GH_TOKEN: ${{ secrets.L10N_PR_TOKEN }}
+          PULL_REQUEST: ${{ steps.crowdin.outputs.pull_request_url }}

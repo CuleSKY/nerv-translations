@@ -1,0 +1,21 @@
+{
+  "next": 5,
+  "entries": [
+    {
+      "id": "unloze.r1",
+      "match": "UNLOZE | Zombie Escape  | Nosteam"
+    },
+    {
+      "id": "unloze.r2",
+      "match": "UNLOZE.com/stoat | Zombie Escape {n}"
+    },
+    {
+      "id": "unloze.r3",
+      "match": "UNLOZE | Minigames | {rest}"
+    },
+    {
+      "id": "unloze.r4",
+      "match": "UNLOZE.com/stoat | [ZRiot: {day}] {stage} | Ranking"
+    }
+  ]
+}

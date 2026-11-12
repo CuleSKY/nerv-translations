@@ -1,0 +1,41 @@
+{
+  "next": 10,
+  "entries": [
+    {
+      "id": "exg.r1",
+      "match": "僵尸逃跑ZE 装备活动#{n}"
+    },
+    {
+      "id": "exg.r2",
+      "match": "僵尸逃跑ZE 装备#{n} 无宵禁"
+    },
+    {
+      "id": "exg.r3",
+      "match": "僵尸逃跑ZE 装备#{n}"
+    },
+    {
+      "id": "exg.r4",
+      "match": "僵尸逃跑ZE #{n}"
+    },
+    {
+      "id": "exg.r5",
+      "match": "PVE模式 #{n}"
+    },
+    {
+      "id": "exg.r6",
+      "match": "躲猫猫 #{n}"
+    },
+    {
+      "id": "exg.r7",
+      "match": "娱乐闯关MG #{n}"
+    },
+    {
+      "id": "exg.r8",
+      "match": "滑翔SURF #{n}"
+    },
+    {
+      "id": "exg.r9",
+      "match": "挂机大厅 #{n}"
+    }
+  ]
+}

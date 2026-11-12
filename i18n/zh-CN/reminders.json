@@ -1,0 +1,8 @@
+{
+  "title": "换图通知",
+  "map": "地图：{map}",
+  "map_with_name": "地图：{map}（{name}）",
+  "server": "服务器：{server}",
+  "players": "当前人数：{players} / {capacity}",
+  "players_without_capacity": "当前人数：{players}"
+}
